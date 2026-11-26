@@ -19,6 +19,7 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Scene from './Scene.svelte';
+	import Snowfall from './Snowfall.svelte';
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
 	import Win from './Win.svelte';
@@ -70,6 +71,7 @@
 		<Sound />
 
 		<Scene />
+		<Snowfall />
 
 		<MainContainer>
 			<BoardFrame />

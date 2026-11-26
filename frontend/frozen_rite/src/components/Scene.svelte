@@ -18,6 +18,7 @@
 	const ROCK = 512 / 384;
 	const STUMP = 512 / 384;
 	const TWIGS = 512 / 384;
+	const FLAG = 498 / 384;
 </script>
 
 <MainContainer>
@@ -33,4 +34,5 @@
 	<Sprite key="prop_rock" anchor={{ x: 0.5, y: 1 }} x={left - 300} y={ground + 52} height={62} width={62 * ROCK} />
 	<Sprite key="prop_stump" anchor={{ x: 0.5, y: 1 }} x={right + 300} y={ground + 50} height={64} width={64 * STUMP} />
 	<Sprite key="prop_twigs" anchor={{ x: 0.5, y: 1 }} x={right + 170} y={ground + 60} height={44} width={44 * TWIGS} />
+	<Sprite key="prop_flag" anchor={{ x: 0.5, y: 1 }} x={left - 175} y={ground + 62} height={58} width={58 * FLAG} />
 </MainContainer>

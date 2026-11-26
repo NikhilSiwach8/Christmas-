@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	fx_snow_a: {
+		type: 'sprite',
+		src: '/art/fx/snow_a.webp',
+	},
+	fx_snow_b: {
+		type: 'sprite',
+		src: '/art/fx/snow_b.webp',
+	},
+	fx_snow_c: {
+		type: 'sprite',
+		src: '/art/fx/snow_c.webp',
+	},
+	fx_sparkle: {
+		type: 'sprite',
+		src: '/art/fx/sparkle.webp',
+	},
+	prop_flag: {
+		type: 'sprite',
+		src: '/art/props/flag.webp',
+	},
 	prop_stump: {
 		type: 'sprite',
 		src: '/art/props/stump.webp',

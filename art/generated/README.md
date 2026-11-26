@@ -44,3 +44,8 @@ Procedural art left: the Frost Wheel itself (wheel_stand/face/hub/pointer art no
 prop_stump, prop_twigs, prop_rock (used as ground dressing in `Scene.svelte`), prop_totem_short, prop_totem_tall (exported to static/art/props but unused:
 the painted backgrounds already contain totems). All have real transparency. With this the scene-prop set from the prompt pack is complete.
 Remaining art to generate: wheel parts, control bar + UI pieces, rite banner / counter / multiplier badges, buy-menu cards, intro cards, logo, thumbnails, win plates, audio.
+
+## Particles + flag (batch 11)
+fx_snow_a/b/c (three snowflake particles), fx_sparkle (four-point star), prop_flag (small snowflake flag, used as ground dressing).
+All real alpha. Used by `components/Snowfall.svelte`: 26 gentle flakes + 7 twinkling sparkles in the base game, 64 faster, wind-blown flakes during the blizzard rite.
+The layer sits behind the board/props/UI (zIndex -0.5) so it never covers the control bar.
