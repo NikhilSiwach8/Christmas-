@@ -64,7 +64,7 @@ LAYERS = {
     "H1": (WITCH, "pointed hat with ice-crystal ring; head and face; cloak; staff with lantern; hands"),
     "H2": (SYMS["H2"][2], "head with brow crystals; body and wings; crystal ball; ice stump; eyes open and eyes closed as two spare parts"),
     "H3": (SYMS["H3"][2], "head with beard; torso with fur; drum; arms with drumstick; legs"),
-    "H4": (SYMS["H4"][2], "helmet; head with nose; three snowballs; shield; stick arms"),
+    "H4": (SYMS["H4"][2], "helmet; head ball with face and carrot nose; middle snowball with coal buttons; bottom snowball; round shield; two stick arms. IMPORTANT: the head ball, the middle snowball and the bottom snowball must be three completely separate pieces with a clear gap of empty space between them (not stacked, not touching, not overlapping)"),
     "H5": (SYMS["H5"][2], "head with forehead gem; body; tail; three floating crystals; eyes open and eyes closed as two spare parts"),
     "W": (WILD, "ribbon body; face; ice crown; sparkle stars"),
     "S": (SCAT, "cover; pages; light beam with snowflakes; strap with buckle"),
