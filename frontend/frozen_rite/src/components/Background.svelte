@@ -1,47 +1,53 @@
 <script lang="ts">
-	import { Rectangle, Graphics } from 'pixi-svelte';
+	import { Rectangle, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
 	import { ICE } from '../game/theme';
-	import { drawHills, seeded } from '../game/art';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+	const portrait = $derived(canvas.height > canvas.width);
 	const inFeature = $derived(context.stateGame.gameType === 'freegame');
-	const blizzard = $derived(inFeature && context.stateGame.rite === 'blizzard');
-	const whiteout = $derived(inFeature && context.stateGame.rite === 'whiteout');
+	const which = $derived(!inFeature ? 'base' : context.stateGame.rite);
 
-	// diagonal wind streaks (blizzard) and aurora ribbons (whiteout): flat ink-cartoon shapes
-	const drawStreaks = (g: import('pixi.js').Graphics) => {
-		const rnd = seeded(21);
-		for (let i = 0; i < 46; i++) {
-			const x = rnd() * canvas.width;
-			const y = rnd() * canvas.height;
-			const len = 60 + rnd() * 140;
-			g.moveTo(x, y).lineTo(x - len, y + len * 0.35).stroke({ color: 0xffffff, width: 3 + rnd() * 4, alpha: 0.75, cap: 'round' });
-		}
+	// native sizes of the generated paintings (cover-fit to the canvas)
+	const SIZES = {
+		base_d: [1789, 879],
+		base_p: [941, 1672],
+		blizzard_d: [1789, 879],
+		blizzard_p: [941, 1672],
+		whiteout_d: [1789, 879],
+		whiteout_p: [941, 1672], // not generated yet: falls back to the desktop painting
+	} as const;
+	const HAVE_PORTRAIT = { base: true, blizzard: true, whiteout: false } as const;
+
+	const pick = (kind: 'base' | 'blizzard' | 'whiteout') => {
+		const usePortrait = portrait && HAVE_PORTRAIT[kind];
+		const key = `${kind}_${usePortrait ? 'p' : 'd'}` as keyof typeof SIZES;
+		const [w, h] = SIZES[key];
+		const scale = Math.max(canvas.width / w, canvas.height / h);
+		return { key: `bg_${key}`, width: w * scale, height: h * scale };
 	};
-	const drawRibbons = (g: import('pixi.js').Graphics) => {
-		for (let i = 0; i < 3; i++) {
-			const y = canvas.height * (0.12 + i * 0.07);
-			g.moveTo(0, y);
-			for (let x = 0; x <= canvas.width; x += 40) g.lineTo(x, y + Math.sin(x / 120 + i) * 26);
-			g.stroke({ color: i % 2 ? ICE.glacier : ICE.aurora, width: 22, alpha: 0.35, cap: 'round' });
-		}
-	};
+	const layers = $derived(
+		(['base', 'blizzard', 'whiteout'] as const).map((kind) => ({ kind, ...pick(kind) })),
+	);
 </script>
 
 <Rectangle {...canvas} backgroundColor={ICE.bone} zIndex={-3} />
-<Graphics zIndex={-2} draw={(g) => drawHills(g, canvas.width, canvas.height, 0xe2d9c6)} />
 
-<FadeContainer show={blizzard} duration={SECOND} zIndex={-1}>
-	<Rectangle {...canvas} backgroundColor={0xb7dcf0} backgroundAlpha={0.55} />
-	<Graphics draw={drawStreaks} />
-</FadeContainer>
-
-<FadeContainer show={whiteout} duration={SECOND} zIndex={-1}>
-	<Rectangle {...canvas} backgroundColor={0xe6defc} backgroundAlpha={0.6} />
-	<Graphics draw={drawRibbons} />
-</FadeContainer>
+{#if context.stateApp.loaded}
+{#each layers as layer (layer.kind)}
+	<FadeContainer show={which === layer.kind} duration={SECOND} zIndex={layer.kind === 'base' ? -2 : -1}>
+		<Sprite
+			key={layer.key}
+			anchor={0.5}
+			x={canvas.width / 2}
+			y={canvas.height / 2}
+			width={layer.width}
+			height={layer.height}
+		/>
+	</FadeContainer>
+{/each}
+{/if}

@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	bg_base_d: {
+		type: 'sprite',
+		src: '/art/bg/base_d.webp',
+	},
+	bg_base_p: {
+		type: 'sprite',
+		src: '/art/bg/base_p.webp',
+	},
+	bg_blizzard_d: {
+		type: 'sprite',
+		src: '/art/bg/blizzard_d.webp',
+	},
+	bg_blizzard_p: {
+		type: 'sprite',
+		src: '/art/bg/blizzard_p.webp',
+	},
+	bg_whiteout_d: {
+		type: 'sprite',
+		src: '/art/bg/whiteout_d.webp',
+	},
 	fx_crack: {
 		type: 'sprite',
 		src: '/art/fx/crack.webp',

@@ -23,3 +23,9 @@ All symbols + the chalk grid are wired into `frontend/frozen_rite` (static/art/s
 Win = bounce animation (SymbolSprite.svelte); wild shows the cracked-ice ring after a win.
 
 Batch 6 effects are in `art/fx/` and are wired into the game; wild/scatter animation layers are in `art/layers/`.
+
+## Backgrounds (batch 7)
+bg_base_desktop / bg_base_portrait / bg_blizzard_desktop / bg_blizzard_portrait / bg_whiteout_desktop (1789x879 desktop, 941x1672 portrait).
+**Missing: bg_whiteout_portrait** (the game falls back to the desktop painting, cover-fit, in portrait). All wired in via `components/Background.svelte`
+(base in the base game; blizzard / whiteout cross-fade in during that rite's free spins). The paintings already contain chains, hanging banners and
+crystal totems, so the procedural chains/banners were removed from `Scene.svelte`.

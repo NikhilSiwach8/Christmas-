@@ -4,7 +4,7 @@
 
 	import { getContext } from '../game/context';
 	import { ICE } from '../game/theme';
-	import { drawAcolyte, drawBanner, drawChain, drawSigil } from '../game/art';
+	import { drawAcolyte } from '../game/art';
 
 	const context = getContext();
 	const layout = $derived(context.stateGameDerived.boardLayout());
@@ -19,23 +19,6 @@
 </script>
 
 <MainContainer>
-	<!-- hanging chains in the four top corners -->
-	{#each [60, 108, layout.x * 2 - 108, layout.x * 2 - 60] as cx (cx)}
-		<Container x={cx} y={-6}>
-			<Graphics draw={(g) => drawChain(g, 170 + (cx % 7) * 10)} />
-		</Container>
-	{/each}
-
-	<!-- torn banners with the Frost Eye Sigil -->
-	{#each [-1, 1] as side (side)}
-		<Container x={(side < 0 ? left : right) + side * 175} y={layout.y - 215}>
-			<Graphics draw={(g) => drawBanner(g, 92, 210)} />
-			<Container y={210 * 0.36}>
-				<Graphics draw={(g) => drawSigil(g, 24)} />
-			</Container>
-		</Container>
-	{/each}
-
 	<!-- frost acolytes -->
 	{#each [-1, 1] as side (side)}
 		<Container x={(side < 0 ? left : right) + side * 120} y={layout.y + 70}>

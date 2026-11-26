@@ -164,3 +164,29 @@
 	})}
 	{template}
 />
+
+<Story
+	name="bgBlizzard"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: events.reveal,
+		action: async (data) => {
+			await playBookEvent({ ...events.riteAwaken, rite: 'blizzard' }, { bookEvents: [] });
+			await playBookEvent({ ...data, gameType: 'freegame' }, { bookEvents: [] });
+		},
+	})}
+	{template}
+/>
+
+<Story
+	name="bgWhiteout"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: events.reveal,
+		action: async (data) => {
+			await playBookEvent({ ...events.riteAwaken, rite: 'whiteout' }, { bookEvents: [] });
+			await playBookEvent({ ...data, gameType: 'freegame' }, { bookEvents: [] });
+		},
+	})}
+	{template}
+/>
