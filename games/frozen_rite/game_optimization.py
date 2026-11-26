@@ -19,46 +19,31 @@ class OptimizationSetup:
         wincaps = {}
         for bm in game_config.bet_modes:
             wincaps[bm.get_name()] = bm.get_wincap()
-        self.game_config.opt_params = {
-            "base": {
+        def scaling(rows):
+            return ConstructScaling(
+                [{"criteria": c, "scale_factor": f, "win_range": r, "probability": 1.0} for c, f, r in rows]
+            ).return_dict()
+
+        def natural(freegame_rtp, freegame_hr, base_rtp, base_hr):
+            return {
                 "conditions": {
                     "wincap": ConstructConditions(
                         rtp=0.001, av_win=wincaps["base"], search_conditions=wincaps["base"]
                     ).return_dict(),
                     "0": ConstructConditions(rtp=0, av_win=0, search_conditions=0).return_dict(),
                     "freegame": ConstructConditions(
-                        rtp=0.376, hr=200, search_conditions={"symbol": "scatter"}
+                        rtp=freegame_rtp, hr=freegame_hr, search_conditions={"symbol": "scatter"}
                     ).return_dict(),
-                    "basegame": ConstructConditions(hr=3.5, rtp=0.59).return_dict(),
+                    "basegame": ConstructConditions(hr=base_hr, rtp=base_rtp).return_dict(),
                 },
-                "scaling": ConstructScaling(
+                "scaling": scaling(
                     [
-                        {
-                            "criteria": "basegame",
-                            "scale_factor": 1.2,
-                            "win_range": (1, 2),
-                            "probability": 1.0,
-                        },
-                        {
-                            "criteria": "basegame",
-                            "scale_factor": 1.5,
-                            "win_range": (10, 20),
-                            "probability": 1.0,
-                        },
-                        {
-                            "criteria": "freegame",
-                            "scale_factor": 0.8,
-                            "win_range": (1000, 2000),
-                            "probability": 1.0,
-                        },
-                        {
-                            "criteria": "freegame",
-                            "scale_factor": 1.2,
-                            "win_range": (3000, 4000),
-                            "probability": 1.0,
-                        },
+                        ("basegame", 1.2, (1, 2)),
+                        ("basegame", 1.5, (10, 20)),
+                        ("freegame", 0.8, (1000, 2000)),
+                        ("freegame", 1.2, (3000, 4000)),
                     ]
-                ).return_dict(),
+                ),
                 "parameters": ConstructParameters(
                     num_show=5000,
                     num_per_fence=10000,
@@ -75,36 +60,23 @@ class OptimizationSetup:
                     bias_ranges=[(1.5, 3.5)],
                     bias_weights=[0.4],
                 ).return_dict(),
-            },
-            "bonus": {
+            }
+
+        def buy(mode):
+            return {
                 "conditions": {
                     "wincap": ConstructConditions(
-                        rtp=0.001, av_win=wincaps["bonus"], search_conditions=wincaps["bonus"]
+                        rtp=0.001, av_win=wincaps[mode], search_conditions=wincaps[mode]
                     ).return_dict(),
                     "freegame": ConstructConditions(rtp=0.966, hr="x").return_dict(),
                 },
-                "scaling": ConstructScaling(
+                "scaling": scaling(
                     [
-                        {
-                            "criteria": "freegame",
-                            "scale_factor": 0.9,
-                            "win_range": (20, 50),
-                            "probability": 1.0,
-                        },
-                        {
-                            "criteria": "freegame",
-                            "scale_factor": 0.8,
-                            "win_range": (1000, 2000),
-                            "probability": 1.0,
-                        },
-                        {
-                            "criteria": "freegame",
-                            "scale_factor": 1.2,
-                            "win_range": (3000, 4000),
-                            "probability": 1.0,
-                        },
+                        ("freegame", 0.9, (20, 50)),
+                        ("freegame", 0.8, (1000, 2000)),
+                        ("freegame", 1.2, (3000, 4000)),
                     ]
-                ).return_dict(),
+                ),
                 "parameters": ConstructParameters(
                     num_show=5000,
                     num_per_fence=10000,
@@ -116,7 +88,14 @@ class OptimizationSetup:
                     test_weights=[0.6, 0.2, 0.2],
                     score_type="rtp",
                 ).return_dict(),
-            },
+            }
+
+        self.game_config.opt_params = {
+            "base": natural(freegame_rtp=0.376, freegame_hr=200, base_rtp=0.59, base_hr=3.5),
+            # cost 1.25: more frequent feature triggers; RTP fractions are of the 1.25 cost
+            "bonus_bet": natural(freegame_rtp=0.466, freegame_hr=100, base_rtp=0.5, base_hr=3.5),
+            "buy_blizzard": buy("buy_blizzard"),
+            "buy_whiteout": buy("buy_whiteout"),
         }
 
         verify_optimization_input(self.game_config, self.game_config.opt_params)

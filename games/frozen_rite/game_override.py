@@ -3,23 +3,18 @@ from src.calculations.statistics import get_random_outcome
 
 
 class GameStateOverride(GameExecutables):
-    """
-    This class is is used to override or extend universal state.py functions.
-    e.g: A specific game may have custom book properties to reset
-    """
+    """Override or extend universal state.py functions."""
 
     def reset_book(self):
-        # Reset global values used across multiple projects
         super().reset_book()
-        # Reset parameters relevant to local game only
+        self.rite = None
 
     def assign_special_sym_function(self):
-        self.special_symbol_functions = {"W": [self.assign_mult_property]}
+        self.special_symbol_functions = {}
 
-    def assign_mult_property(self, symbol):
-        """Assign symbol multiplier using probabilities defined in config distributions."""
-        multiplier_value = get_random_outcome(self.get_current_distribution_conditions()["mult_values"])
-        symbol.assign_attribute({"multiplier": multiplier_value})
+    def cond(self, key, default):
+        """Per-distribution condition with a config default."""
+        return self.get_current_distribution_conditions().get(key, default)
 
     def check_game_repeat(self):
         """Verify final simulation outcomes satisfied all distribution/criteria conditions."""

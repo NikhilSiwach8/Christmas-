@@ -1,0 +1,28 @@
+{
+    "modes": [
+        {
+            "name": "base",
+            "cost": 1.0,
+            "events": "books_base.jsonl.zst",
+            "weights": "lookUpTable_base_0.csv"
+        },
+        {
+            "name": "bonus_bet",
+            "cost": 1.25,
+            "events": "books_bonus_bet.jsonl.zst",
+            "weights": "lookUpTable_bonus_bet_0.csv"
+        },
+        {
+            "name": "buy_blizzard",
+            "cost": 100.0,
+            "events": "books_buy_blizzard.jsonl.zst",
+            "weights": "lookUpTable_buy_blizzard_0.csv"
+        },
+        {
+            "name": "buy_whiteout",
+            "cost": 150.0,
+            "events": "books_buy_whiteout.jsonl.zst",
+            "weights": "lookUpTable_buy_whiteout_0.csv"
+        }
+    ]
+}

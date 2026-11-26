@@ -1,4 +1,5 @@
 """Main file for generating results for sample ways-pay game."""
+import os
 from gamestate import GameState
 from game_config import GameConfig
 from game_optimization import OptimizationSetup
@@ -13,21 +14,23 @@ if __name__ == "__main__":
     num_threads = 10
     rust_threads = 20
     batching_size = 50000
-    compression = True
+    compression = os.environ.get("FR_COMPRESS", "1") == "1"
     profiling = False
 
     num_sim_args = {
-        "base": int(2e3),
-        "bonus": int(2e3),
+        "base": int(os.environ.get("FR_SIMS", 100000)),
+        "bonus_bet": int(os.environ.get("FR_SIMS", 100000)),
+        "buy_blizzard": int(os.environ.get("FR_SIMS", 100000)),
+        "buy_whiteout": int(os.environ.get("FR_SIMS", 100000)),
     }
 
     run_conditions = {
         "run_sims": True,
-        "run_optimization": True,
-        "run_analysis": True,
-        "run_format_checks": True,
+        "run_optimization": os.environ.get("FR_OPT", "1") == "1",
+        "run_analysis": os.environ.get("FR_OPT", "1") == "1",
+        "run_format_checks": compression,
     }
-    target_modes = ["base", "bonus"]
+    target_modes = ["base", "bonus_bet", "buy_blizzard", "buy_whiteout"]
 
     config = GameConfig()
     gamestate = GameState(config)
