@@ -1,0 +1,31 @@
+export default {
+	providerName: 'frozen_rite_studio',
+	gameName: 'Frozen Rite',
+	gameID: 'frozen_rite',
+	rtp: 0.967,
+	numReels: 5,
+	numRows: [4, 4, 4, 4, 4],
+	betModes: {
+		base: { cost: 1.0, feature: true, buyBonus: false, rtp: 0.967, max_win: 10000 },
+		bonus_bet: { cost: 1.25, feature: true, buyBonus: false, rtp: 0.967, max_win: 10000 },
+		buy_blizzard: { cost: 100.0, feature: false, buyBonus: true, rtp: 0.967, max_win: 10000 },
+		buy_whiteout: { cost: 150.0, feature: false, buyBonus: true, rtp: 0.967, max_win: 10000 },
+	},
+	symbols: {
+		W: { paytable: null, special_properties: ['wild'] },
+		S: { paytable: null, special_properties: ['scatter'] },
+		H1: { paytable: [{ '5': 3.0 }, { '4': 0.9 }, { '3': 0.3 }], special_properties: [] },
+		H2: { paytable: [{ '5': 1.8 }, { '4': 0.6 }, { '3': 0.2 }], special_properties: [] },
+		H3: { paytable: [{ '5': 1.2 }, { '4': 0.5 }, { '3': 0.2 }], special_properties: [] },
+		H4: { paytable: [{ '5': 0.8 }, { '4': 0.3 }, { '3': 0.1 }], special_properties: [] },
+		H5: { paytable: [{ '5': 0.6 }, { '4': 0.2 }, { '3': 0.1 }], special_properties: [] },
+		L1: { paytable: [{ '5': 0.4 }, { '4': 0.2 }, { '3': 0.1 }], special_properties: [] },
+		L2: { paytable: [{ '5': 0.3 }, { '4': 0.1 }, { '3': 0.1 }], special_properties: [] },
+		L3: { paytable: [{ '5': 0.2 }, { '4': 0.1 }, { '3': 0.1 }], special_properties: [] },
+		L4: { paytable: [{ '5': 0.2 }, { '4': 0.1 }, { '3': 0.1 }], special_properties: [] },
+	},
+	paddingReels: {
+		basegame: '',
+		freegame: '',
+	},
+};
