@@ -39,7 +39,7 @@ SYMS = {
     "H2": ("Snow Owl Oracle", "h2.webp", "A cute-but-eerie round snow owl with a huge head, fluffy white and pale-blue feathers, giant glowing cyan eyes with white highlights, tiny ice-crystal brow feathers, perched on a short ice stump, holding a glowing cyan crystal ball in one wing, three-quarter view, small flat oval ground shadow, square composition."),
     "H3": ("Yeti Elder", "h3.webp", "A cute-but-eerie little yeti elder: round shaggy fur in DEEP ICE BLUE #1F5FA8 with pale-frost tips (clearly darker than white), a big white beard and white eyebrows hiding the mouth, glowing cyan eyes, a small carved ice drum hanging from a rope at the belly, tiny stubby arms holding a drumstick made of a frozen twig, three-quarter view, small flat oval ground shadow, square composition."),
     "H4": ("Snow Sentinel (snowman guard)", "h4.webp", "A cute-but-eerie little snowman sentinel: three stacked round snowballs with an ink outline, a dented tin-blue helmet with a snowflake emblem, glowing cyan eyes, a carrot nose, stick arms holding a round deep-blue shield bearing a six-point snowflake with an eye in the centre, small flat oval ground shadow, square composition."),
-    "H5": ("Frost Fox Spirit", "h5.webp", "A cute-but-eerie frost fox spirit sitting, oversized head, pale-frost and deep-blue fur with a fluffy tail curling around its feet, three small ice crystals floating above the head, glowing cyan eyes, a small aurora-violet gem on the forehead, three-quarter view, small flat oval ground shadow, square composition."),
+    "H5": ("Frost Fox Spirit", "h5.webp", "A cute-but-eerie frost fox spirit sitting, oversized head, fur in AURORA VIOLET #8F6BFF with pale-frost tips, chest and tail tip (clearly more violet than white), a fluffy tail curling around its feet, three small ice crystals floating above the head, glowing cyan eyes, a small aurora-violet gem on the forehead, three-quarter view, small flat oval ground shadow, square composition."),
 }
 for k, (n, f, b) in SYMS.items():
     add(k, f"{n} ({k}, high pay)", f, "1024x1024 (export 512)", "Attach A2 (Frost Witch) as style reference.", img(b))
@@ -280,9 +280,9 @@ REVISION = """
     its area) so symbols stay separable at 90 px on the pale background:
       H1 Frost Witch .... sky blue (hat + cloak)           [approved]
       H2 Snow Owl ....... white + cyan eyes + violet scarf [approved]
-      H3 Yeti ........... DEEP ICE BLUE fur, white beard   [regenerate]
-      H4 Snowman ........ white body, deep-blue helmet + shield, gold trim
-      H5 Fox ............ aurora-violet fur with pale tips
+      H3 Yeti ........... DEEP ICE BLUE fur, white beard   [approved]
+      H4 Snowman ........ white body, deep-blue helmet + shield, gold trim [approved]
+      H5 Fox ............ aurora-violet fur with pale tips [regenerate: v1 came back mostly white]
       S  Codex .......... cyan + gold; W Wisp .......... violet + cyan
   - Board art must be chalk lines only (no frame/posts/banners): scene dressing
     is separate art.
