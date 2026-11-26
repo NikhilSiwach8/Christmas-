@@ -1,5 +1,33 @@
 =====================================================================
 FROZEN RITE - COMPLETE ASSET PROMPT PACK  (v2, reference-matched)
+---------------------------------------------------------------------
+16. ON-SCREEN SIZES IN THE BUILT GAME (so generated art drops in 1:1)
+---------------------------------------------------------------------
+Layout units = the game's "main layout" (desktop 1422 x 800). Generate art at
+2x these sizes (3x for hero pieces) and keep the aspect ratios.
+  Symbol cell ............ 90 x 90   (board = 5 x 4 cells = 450 x 360, centred)
+  Chalk grid ............. 450 x 360 + 8 px margin; 4 px lines (+2 px ink edge)
+  Ice lantern ............ ~34 wide x 40 tall, 4 board corners (offset 18 px out)
+  Wheel .................. radius 50 face, +9 dark rim, 8 spikes to radius 80;
+                           stand/base below to radius ~92; centre sits ~90 px
+                           above the board top edge; spins at 1.9x scale, lifted
+                           over the board centre; pointer coral, 20 px wide
+  Wheel basins (x2) ...... 84 wide, 120 px left/right of the wheel centre
+  Banners (x2) ........... 92 x 210 cloth (+ pole), ~175 px outside the board edge,
+                           top ~215 px above board centre
+  Acolyte groups (x2) .... 3 figures, radius 22-26 each, ~120 px outside the board edge
+  Chains ................. 4 total, top corners, ~170-220 px long, link ~22 px
+  Hills / background ..... full canvas; centre must stay low-contrast
+  Control bar plate ...... 1520 x 157, fully rounded ends (radius ~70), centred,
+                           10 px above the bottom edge
+  Bar items (inside plate) Menu + Buy Bonus left; BALANCE / WIN / BET at x = 470 /
+                           770 / 1070; +/- stacked at x = 1210; spin button 143 px
+                           at x = 1335; Auto/Turbo stacked at x = 1450
+  Rite banner (popup) .... ~470 x 135 centred on the board
+  Multiplier badge ....... ~110 diameter, top-right of the board
+  Logo (top-left) ........ ~330 x 70 on screen (art at 1800 x 700 is scaled down)
+  Fonts bundled .......... Nunito Sans (UI), Uncial Antiqua (titles)  - SIL OFL
+
 =====================================================================
 Supersedes docs/asset-prompts.md (that file used a dark painterly glacier look;
 this one follows the reference screen recording: bold hand-inked cartoon art on a
