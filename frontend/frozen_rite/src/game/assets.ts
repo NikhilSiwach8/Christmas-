@@ -1,5 +1,21 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	prop_lantern_leaning: {
+		type: 'sprite',
+		src: '/art/props/lantern_leaning.webp',
+	},
+	prop_lantern_squat: {
+		type: 'sprite',
+		src: '/art/props/lantern_squat.webp',
+	},
+	prop_lantern_tall: {
+		type: 'sprite',
+		src: '/art/props/lantern_tall.webp',
+	},
+	bg_whiteout_p: {
+		type: 'sprite',
+		src: '/art/bg/whiteout_p.webp',
+	},
 	bg_base_d: {
 		type: 'sprite',
 		src: '/art/bg/base_d.webp',

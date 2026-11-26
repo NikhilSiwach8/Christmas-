@@ -19,9 +19,9 @@
 		blizzard_d: [1789, 879],
 		blizzard_p: [941, 1672],
 		whiteout_d: [1789, 879],
-		whiteout_p: [941, 1672], // not generated yet: falls back to the desktop painting
+		whiteout_p: [941, 1672],
 	} as const;
-	const HAVE_PORTRAIT = { base: true, blizzard: true, whiteout: false } as const;
+	const HAVE_PORTRAIT = { base: true, blizzard: true, whiteout: true } as const;
 
 	const pick = (kind: 'base' | 'blizzard' | 'whiteout') => {
 		const usePortrait = portrait && HAVE_PORTRAIT[kind];

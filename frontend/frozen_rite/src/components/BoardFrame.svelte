@@ -10,7 +10,6 @@
 	import { getContext } from '../game/context';
 	import { ICE } from '../game/theme';
 	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
-	import { drawLantern } from '../game/art';
 
 	const context = getContext();
 	let glow = $state(false);
@@ -40,9 +39,14 @@
 
 <Graphics draw={drawBacking} />
 <Sprite key="board_grid" anchor={0.5} x={layout.x} y={layout.y} width={artW} height={artH} />
-<!-- ice lanterns on the four corners -->
-{#each [[-1, -1], [1, -1], [-1, 1], [1, 1]] as [sx, sy], i (i)}
-	<Container x={layout.x + sx * (layout.width / 2 + 18)} y={layout.y + sy * (layout.height / 2 + 6) - 28}>
-		<Graphics draw={(g) => drawLantern(g, 34)} />
-	</Container>
+<!-- ice lanterns on the four corners: [corner x, corner y, sprite, mirrored] -->
+{#each [[-1, -1, 'tall', 1], [1, -1, 'leaning', 1], [-1, 1, 'leaning', -1], [1, 1, 'squat', 1]] as [sx, sy, kind, flip], i (i)}
+	<Sprite
+		key={`prop_lantern_${kind}`}
+		anchor={{ x: 0.5, y: 1 }}
+		x={layout.x + (sx as number) * (layout.width / 2 + 20)}
+		y={layout.y + (sy as number) * (layout.height / 2 + 8) + 26}
+		height={(kind === 'squat' ? 66 : 96)}
+		width={(kind === 'squat' ? 60 : 64) * (flip as number)}
+	/>
 {/each}
