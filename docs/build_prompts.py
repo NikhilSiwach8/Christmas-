@@ -287,14 +287,13 @@ REVISION = """
   - Board art must be chalk lines only (no frame/posts/banners): scene dressing
     is separate art.
 """
-if REVISION.strip() not in head:
-    head = head.rstrip("\n") + "\n" + REVISION
-
 # keep sections 0-1 and 13-16 from the existing file
 i2 = old.index(f"\n{bar}\n2. ANCHOR ASSETS")
 i13 = old.index(f"\n{bar}\n13. FILE MAP")
 head = old[:i2]
 tail = old[i13:]
+if REVISION.strip() not in head:
+    head = head.rstrip("\n") + "\n" + REVISION
 if "v3: every prompt" not in head:
     head = head.replace("Supersedes docs/asset-prompts.md", "(v3: every prompt in sections 2-12 is COMPLETE and self-contained - copy only the text between 'COPY FROM HERE' and 'END OF PROMPT'.)\nSupersedes docs/asset-prompts.md", 1)
 head = head.replace("[STYLE PREFIX]  (paste at the start of EVERY image prompt)", "STYLE PREFIX  (for reference only - already included inside every prompt below)")
