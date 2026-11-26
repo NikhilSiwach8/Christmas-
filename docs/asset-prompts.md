@@ -1,3 +1,5 @@
+> **SUPERSEDED** by `docs/frozen-rite-asset-prompts.txt` (reference-matched inked-cartoon direction). Kept for the dark glacier alternative.
+
 # Frozen Rite - complete asset prompt pack
 
 Original ice-themed slot. **Every asset below must be original** - do not feed in screenshots/art of any existing game

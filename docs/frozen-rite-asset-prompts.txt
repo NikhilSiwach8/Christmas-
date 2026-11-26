@@ -1,0 +1,600 @@
+=====================================================================
+FROZEN RITE - COMPLETE ASSET PROMPT PACK  (v2, reference-matched)
+=====================================================================
+Supersedes docs/asset-prompts.md (that file used a dark painterly glacier look;
+this one follows the reference screen recording: bold hand-inked cartoon art on a
+pale ground, chalk-drawn tilted board, wheel above the board, followers flanking
+the board, compact dark bottom bar, paper menu cards).
+
+---------------------------------------------------------------------
+0. WHAT WE LEARNED FROM THE REFERENCE VIDEO (structure to mirror)
+---------------------------------------------------------------------
+Scene composition (1280x720 frame, in order of importance):
+  1. Pale, bone-coloured background with soft scalloped hills; small props
+     scattered (crosses, skulls) and heavy chains hanging from the top corners.
+  2. Hand-drawn 5x4 grid scratched on the ground in red ink, drawn in slight
+     perspective (wider at the bottom), with ink splatter dots. NOT a framed box.
+  3. Wheel on a pole ABOVE the board, centre-top, with an eye in its hub, spiked
+     rim, a creature limb curling around it; a stone basin on each side of it.
+  4. Groups of small hooded followers (black cloaks, glowing eyes) flank the
+     board left and right; a torn banner with an eye emblem behind each group.
+  5. Candles on the four corners of the board.
+  6. Logo top-left (small, outlined lettering with an eye replacing a letter).
+  7. Bottom bar: compact, dark, rounded; left = menu avatar button + hamburger;
+     centre = BALANCE | WIN | BET (small coloured label over white value);
+     right = + / - stacked, a big round spin button with circular arrow, and
+     two small round buttons (Auto "A", Turbo lightning).
+  8. Symbols: 5 cartoon characters + card ranks A K Q J 10 hand-lettered in
+     the same ink style; ranks use an eye as decoration; characters have a
+     tiny shadow ellipse and a thick black outline.
+  9. Intro screen: logo + three dark torn-edge cards with a title and 3-4 lines
+     of text each, "PRESS TO CONTINUE" below.
+ 10. Transition: black ink blobs with big glowing eyes swallow the screen.
+ 11. Menu / buy screen: paper cards (title, small illustration, candle-style
+     slider, price, red button) for: Ante Spins, The Offering, and three Scatter
+     buys; a small paper "BET - / + / BALANCE" plaque with leaf corners.
+ 12. Typography: hand-drawn brush-gothic logo; card titles in an uncial/
+     blackletter-flavoured caps; body text in heavy condensed caps; bar values
+     in a bold rounded sans.
+
+What we MIRROR: layout, proportions, hierarchy, UI conventions, ink-cartoon look,
+cute-but-eerie tone.
+What we DO NOT COPY (must be original): the creatures, the cult/occult motifs
+(skulls, crosses, tentacle, pentagrams, candles, blood), the eye-in-the-O logo
+lettering, the exact poses, the colours (red/black), the avatar icon. Every
+prompt below uses ICE equivalents. Never upload frames of the reference into an
+image generator and never name the reference game/studio in a prompt.
+
+---------------------------------------------------------------------
+1. LOCKED STYLE BIBLE (never change between assets)
+---------------------------------------------------------------------
+Mood: cute-but-eerie winter ritual. A snowbound shrine where little frost spirits
+perform a ceremony. Quirky, readable, slightly mischievous. NOT scary, NOT gory.
+
+PALETTE (only these, plus tints/shades of them):
+  Snow-bone ground ........ #F3EFE6   (main background)
+  Paper ................... #E9E2D0   (cards, plaques)
+  Ink black ............... #14141C   (ALL outlines)
+  Frost cyan (main accent)  #3FC8F4   (replaces the reference's red)
+  Deep ice blue ........... #1F5FA8
+  Pale frost .............. #DFF6FF
+  Aurora violet ........... #8F6BFF   (specials: wild, wheel, multipliers)
+  Warm gold (rare) ........ #F2C14E   (premium trim, spin-ring, coin only)
+  Night navy (UI bar) ..... #0E1B2E
+  Pointer coral ........... #FF5A6E   (wheel pointer ONLY)
+  Forbidden: crimson red, orange, brown-black "horror" palette, neon green.
+
+LINE: thick, slightly wobbly black ink outline (about 6 px on a 1024 px asset),
+  rounded joins, outline thicker on the outside silhouette than inside details.
+SHADING: flat cel colour + ONE soft darker tone + ONE small white highlight
+  blob/stripe. No gradients, no glow blur (glow = flat translucent cyan shape).
+LIGHT: top-left. Every standing character has a small dark flat ellipse shadow
+  beneath it (#14141C at 25%).
+TEXTURE: faint paper grain over everything (very subtle).
+PROPORTIONS: characters = big round head, tiny body, stubby limbs, glowing cyan
+  eyes (flat cyan oval with a white highlight dot). Slightly asymmetrical.
+RECURRING EMBLEM ("Frost Eye Sigil"): a six-point snowflake whose centre is a
+  vertical almond-shaped eye with a cyan iris. It appears on: logo, banners,
+  wheel hub, scatter, buttons, cards. Always drawn in ink with a cyan iris.
+RUNES: simple angular straight-stroke marks, decorative only, never words.
+
+[STYLE PREFIX]  (paste at the start of EVERY image prompt)
+"""
+Bold hand-inked cartoon game art for an online slot. Thick uneven black ink
+outlines (#14141C) with rounded joins, flat cel-shaded colours with one soft
+shadow tone and one small white highlight, slightly wobbly hand-drawn shapes,
+cute-but-eerie character design (big round head, tiny body, stubby limbs,
+glowing cyan oval eyes with a white highlight dot), faint paper grain. Locked
+palette: snow-bone #F3EFE6, paper #E9E2D0, ink black #14141C, frost cyan #3FC8F4,
+deep ice blue #1F5FA8, pale frost #DFF6FF, aurora violet #8F6BFF, rare warm gold
+#F2C14E. Light from upper left, small flat oval ground shadow under standing
+subjects. Winter ice-ritual theme. Recurring motif: a six-point snowflake with an
+almond-shaped eye at its centre (the "Frost Eye Sigil") and simple angular
+straight-stroke decorative runes. Consistent with the rest of the Frozen Rite set.
+"""
+
+[GLOBAL NEGATIVE]  (paste at the end of EVERY image prompt)
+"""
+photo-realistic, 3D render, painterly gradients, soft airbrush, blurry, glow blur,
+crimson red, orange, blood, gore, skulls, crosses, pentagrams, candles, tentacles,
+devil horns, hooded black cultists, text, letters, watermark, signature, brand
+logos, cropped subject, extra limbs, deformed anatomy, cluttered background,
+characters resembling any existing game, film or cartoon
+"""
+(Exception: prompts that explicitly request lettering - logo, rank symbols,
+ banners - drop the word "text, letters" from the negative.)
+
+CONSISTENCY WORKFLOW:
+  a) Generate the 3 ANCHORS first (A1 Sigil, A2 Frost Witch, A3 Board Grid) and
+     get art-director approval.
+  b) Use the approved anchors as image/style references for everything else.
+  c) One generator + one seed family. Generate sets in ONE batch (all gems/ranks
+     together, all followers together).
+  d) Judge every symbol at 90x90 px: silhouette + colour must read.
+  e) Sample palette from finished assets: only locked hexes allowed.
+
+EXPORT RULES:
+  Symbols/props: transparent PNG, subject centred with 6% padding, generated at
+  2x display size (symbols 512x512), then WebP q90 + PNG fallback.
+  Backgrounds: desktop 2039x1000 and portrait 1242x2208, no transparency.
+  Animated assets (Spine): also request a LAYERS version (parts separated on
+  transparent background): head, body, arms, accessory, eyes (open/closed),
+  shadow.
+  Never bake any readable text into art unless the prompt says so (UI text is
+  drawn by code so it can be translated).
+
+---------------------------------------------------------------------
+2. ANCHOR ASSETS (generate first)
+---------------------------------------------------------------------
+A1. FROST EYE SIGIL          file: sigil.png  1024x1024 transparent
+[STYLE PREFIX] A single emblem: a six-point snowflake drawn in thick black ink
+with pale-frost fill and pale-blue inner shading, a vertical almond-shaped eye
+in the exact centre with a frost-cyan iris, black slit pupil and a white
+highlight dot, tiny angular runes along each arm, perfectly symmetrical, front
+view, centred, transparent background. [GLOBAL NEGATIVE]
+
+A2. FROST WITCH (H1 hero)    file: h1.webp  512x512 transparent
+[STYLE PREFIX] A cute-but-eerie little frost witch: very large round head
+under a pointed pale-blue hat with a drooping tip and a ring of tiny ice
+crystals, huge glowing cyan eyes, rosy-white cheeks, a small cloak of layered
+pale-blue and deep-blue fabric with a snowflake clasp, stubby hands holding a
+short staff topped by a hanging blue-flame ice lantern, three-quarter view,
+small oval ground shadow, filling a square composition, transparent background.
+[GLOBAL NEGATIVE]
+
+A3. BOARD GRID               file: board_grid.png  2000x1500 transparent
+[STYLE PREFIX] A hand-drawn game grid scratched into snow, seen in slight
+perspective (wider at the bottom than the top): 5 columns by 4 rows, drawn with
+rough glowing frost-cyan chalk lines edged in thin black ink, slightly uneven
+and imperfect, a few frost-cyan paint splatter dots and tiny ice shards at some
+intersections, a small angular rune at each outer corner, completely empty
+cells, no symbols, transparent background. [GLOBAL NEGATIVE]
+
+---------------------------------------------------------------------
+3. SYMBOLS  (512x512 transparent; keys match the math: H1-H5, L1-L4, W, S)
+---------------------------------------------------------------------
+Character cast (original; 5 high-pay creatures, 4 card ranks):
+
+H1  FROST WITCH ................ see A2
+H2  SNOW OWL ORACLE
+[STYLE PREFIX] A cute-but-eerie round snow owl with a huge head, fluffy white
+and pale-blue feathers, giant glowing cyan eyes with white highlights, tiny
+ice-crystal brow feathers, perched on a short ice stump, holding a glowing
+cyan crystal ball in one wing, three-quarter view, oval ground shadow, square
+composition, transparent background. [GLOBAL NEGATIVE]
+
+H3  YETI ELDER
+[STYLE PREFIX] A cute-but-eerie little yeti elder: round shaggy white-blue fur,
+long white eyebrows and beard hiding the mouth, glowing cyan eyes, a small
+carved ice drum hanging from a rope at the belly, tiny stubby arms holding a
+drumstick made of a frozen twig, three-quarter view, oval ground shadow,
+square composition, transparent background. [GLOBAL NEGATIVE]
+
+H4  SNOW SENTINEL (snowman guard)
+[STYLE PREFIX] A cute-but-eerie little snowman sentinel: three stacked round
+snowballs with an ink outline, a dented tin-blue helmet with a snowflake
+emblem, glowing cyan eyes, a carrot nose, stick arms holding a round deep-blue
+shield with the Frost Eye Sigil, small oval ground shadow, square composition,
+transparent background. [GLOBAL NEGATIVE]
+
+H5  FROST FOX SPIRIT
+[STYLE PREFIX] A cute-but-eerie frost fox spirit sitting, oversized head,
+pale-frost and deep-blue fur with a fluffy tail curling around its feet, three
+small ice crystals floating above the head, glowing cyan eyes, a small
+aurora-violet gem on the forehead, three-quarter view, oval ground shadow,
+square composition, transparent background. [GLOBAL NEGATIVE]
+
+LOW PAY - CARD RANKS (generate A, K, Q, J together in ONE batch)
+L1 = A   L2 = K   L3 = Q   L4 = J
+[STYLE PREFIX] A set of four matching hand-lettered playing-card rank glyphs,
+the letters "A", "K", "Q", "J" each in chunky ink-outlined lettering, filled
+with frost cyan (A), deep ice blue (K), aurora violet (Q) and pale frost with a
+cyan tint (J), each letter wearing a small frost crown of ice spikes on top,
+a tiny Frost Eye Sigil carved into the middle of the Q only, thick black
+outline, one white highlight stripe each, identical size and weight, each on its
+own transparent square. [GLOBAL NEGATIVE without "text, letters"]
+(Math has no "10". The reference has ten ranks; ours is A K Q J.)
+
+W   AURORA WISP (wild)  3:4 portrait, transparent
+[STYLE PREFIX] A tall, friendly swirling aurora wisp spirit: a flowing ribbon of
+aurora-violet and frost-cyan flat colour shapes in a vertical S-curve, a cute
+face with two big glowing eyes in the centre, wearing a tiny crown of ice,
+sparkle stars drifting upward, thick black ink outline around the whole shape,
+oval ground shadow, transparent background. [GLOBAL NEGATIVE]
+  States: static, land (bounce), win (ribbon whirl + stars), explodedW (ribbon
+  gone, a small cracked ice ring left).
+
+S   FROZEN CODEX (scatter)  slightly oversized, transparent
+[STYLE PREFIX] A chunky ancient spellbook bound in pale-blue frozen leather with
+carved ice-plate corners, the cover showing a large Frost Eye Sigil, the book
+partially open with cyan light and snowflakes escaping from the pages, a leather
+strap with an ice buckle, three-quarter view, oval ground shadow, square
+composition, transparent background. [GLOBAL NEGATIVE]
+  States: spin (hovers), land (thud + frost ring), win (book opens, beam of cyan).
+
+ALL SYMBOLS - extra states
+  postWinStatic: same art, 45% faded with ink-line crack overlay (shared file
+    frost_crack_overlay.png 512x512).
+  explosion (shared, 12 frames, 512x512 each): "a burst of ice shards and snow
+    puffs expanding from the centre, ink-outlined flat shapes in frost cyan and
+    pale frost, transparent background".
+  Idle micro-animations (optional): blink every 3-5 s on all creatures.
+
+---------------------------------------------------------------------
+4. SCENE & BOARD DRESSING
+---------------------------------------------------------------------
+B1. BACKGROUND - BASE GAME     bg_base_desktop.webp 2039x1000, bg_base_portrait.webp 1242x2208
+[STYLE PREFIX] A wide, pale snowfield landscape in the same ink-cartoon style:
+snow-bone ground with large soft scalloped snow-drift hills in slightly darker
+cream, a few ink-outlined ice-spike totems and tiny snowflake marks scattered,
+thick iron-grey chains hanging from the top corners, a calm empty centre for the
+game board, very low contrast so symbols stay readable, no characters.
+[GLOBAL NEGATIVE]
+  Portrait: same scene recomposed vertically, chains at top corners, board area
+  lower-centre, hills stacked.
+
+B2. BACKGROUND - BLIZZARD RITE (free spins) bg_blizzard_*.webp
+Same scene, but the sky/ground tint shifts to pale blue #C9E6F5, diagonal snow
+streak lines in white, chains swaying, ice spikes taller, board area clear.
+[STYLE PREFIX] The same pale snowfield as the base game during a blizzard:
+pale-blue tinted ground, thick white diagonal wind streaks, larger drifting
+snowflakes, ice-spike totems taller and glowing at the tips, keep the centre
+empty and low contrast. [GLOBAL NEGATIVE]
+
+B3. BACKGROUND - WHITEOUT RITE (free spins) bg_whiteout_*.webp
+[STYLE PREFIX] The same pale snowfield as the base game in an eerie whiteout:
+very pale lavender-white ground, aurora-violet ribbons flat-shaded across the
+top, floating ice shards, big soft white circles of light behind the board,
+ice-spike totems glowing violet at the tips, keep the centre empty and low
+contrast. [GLOBAL NEGATIVE]
+
+B4. HANGING CHAINS (x2, tile vertically)   chain_left.png / chain_right.png 256x1024
+[STYLE PREFIX] A thick hanging iron chain made of oval links with a pale-blue
+frost coating, ink-outlined, one white highlight per link, vertical, seamless
+top and bottom, transparent background. [GLOBAL NEGATIVE]
+
+B5. ICE LANTERNS (board corners, 4 variants, 256x384)
+[STYLE PREFIX] A small stubby ice lantern on a short pale stone base, an
+ink-outlined cube of translucent pale-blue ice with a flat frost-cyan flame
+shape inside and tiny sparks, a snow cap on top, a little melted drip, front
+view, oval ground shadow, transparent background. [GLOBAL NEGATIVE]
+  (4 variants: tall, short, leaning, double lantern - for the four board corners.)
+
+B6. FROST ACOLYTES (followers, flank the board)   acolytes_left.png / acolytes_right.png 700x900
+[STYLE PREFIX] A group of three small snow-spirit acolytes standing close
+together, each a round snowball body wrapped in a pale-blue knit hood with a
+pointed tip and a thick scarf, stubby mittens clasped in front, glowing cyan
+eyes, slightly different heights, small oval ground shadows, ink outline,
+transparent background. [GLOBAL NEGATIVE]
+  (Variants: 2 groups per side; right group mirrored with a different pose.)
+
+B7. BANNER (x2)   banner_left.png / banner_right.png 400x900
+[STYLE PREFIX] A tall torn ceremonial banner hanging from a crooked wooden pole
+with a rope loop, deep ice-blue cloth with a ragged V-cut bottom and white
+stitched edges, a large Frost Eye Sigil in pale frost on the cloth, small ice
+crystals frozen on the pole top, ink outline, slight wind curve, transparent
+background. [GLOBAL NEGATIVE]
+
+B8. STONE BASINS (x2, beside the wheel)   basin.png 512x384
+[STYLE PREFIX] A round carved stone basin on a thick base, ink-outlined pale
+grey-blue stone with a frost rim and icicles, a flat frost-cyan flame burning
+inside, tiny rune cracks, front slightly from above, oval ground shadow,
+transparent background. [GLOBAL NEGATIVE]
+
+B9. ICE-SPIKE TOTEMS and PROPS (set of 6, 256-384 px)
+  ice-spike totem tall, ice-spike totem short, snowy rock, frozen twig bundle,
+  snow-covered stump, little snowflake flag. All same ink style, each with a
+  small oval shadow, transparent background.
+[STYLE PREFIX] A set of six small environment props in the same ink style: a tall
+ice-spike totem with a rune, a short ice-spike totem, a snow-covered rock, a
+frozen twig bundle, a snowy tree stump, a tiny snowflake flag on a stick,
+arranged separately on a transparent background. [GLOBAL NEGATIVE]
+
+B10. FALLING SNOW + SPARKLE particles
+  snow_a/b/c.png (64x64): chunky ink-outlined six-point flakes, three variants.
+  spark.png (48x48): four-point sparkle star, white with cyan core, thin outline.
+  shard.png (96x96): small ice shard, ink outline, pale blue fill.
+
+---------------------------------------------------------------------
+5. FROST WHEEL (mounted ABOVE the board, as in the reference layout)
+---------------------------------------------------------------------
+W1. WHEEL STAND + RIM     wheel_stand.png 1024x1200 transparent
+[STYLE PREFIX] A ceremonial prize wheel on a thick pole, seen from the front: a
+heavy dark-iron round rim studded with eight long white ice spikes pointing
+outward, a ring of antler-shaped ice horns on top, stone base ringed with small
+ice spikes, a big Frost Eye Sigil in the hub, eight empty wedge segments
+alternating frost cyan, deep ice blue, aurora violet and pale frost with ink
+dividers, no numbers, ink outline, oval ground shadow, transparent background.
+[GLOBAL NEGATIVE]
+W2. WHEEL FACE (rotating layer)  wheel_face.png 900x900 (empty segments, centre hole)
+W3. WHEEL HUB (static top layer) wheel_hub.png 256x256: the sigil as a metal knob.
+W4. WHEEL POINTER wheel_pointer.png 128x192: coral #FF5A6E ink-outlined crystal
+    pointer in a small silver socket, pointing down.
+W5. FROST SERPENT TAIL wheel_tail.png 500x700 (decor, animated idle sway)
+[STYLE PREFIX] The curling tail of a friendly frost serpent, coiled upward around
+a wheel pole, pale-blue scales with deep-blue stripes and a pointed ice-crystal
+tip, ink outline, one white highlight stripe, transparent background.
+[GLOBAL NEGATIVE]
+W6. WHEEL SEGMENT LABEL PLATES (code draws numbers; art = 8 tiny plates 128x64):
+    plain paper-coloured tag with ink outline, used behind each "x2, x3, x5,
+    x10, x25, x50, x100" number.
+W7. RESULT FLARE wheel_win_flare.png 1024x1024: radial burst of flat ink-outlined
+    star points in frost cyan and pale frost with gold tips, transparent.
+
+---------------------------------------------------------------------
+6. FEATURES (rites, multipliers, banners)
+---------------------------------------------------------------------
+R1. RITE BANNER PLATE (shown when a rite awakens)  rite_banner_frame.png 1600x420
+[STYLE PREFIX] A wide ceremonial scroll banner, paper-coloured parchment with
+ragged torn edges and rolled ends on dark wooden rods, an ink border of angular
+runes, a Frost Eye Sigil at both ends, an empty centre for lettering, front view,
+transparent background. [GLOBAL NEGATIVE without "text"]
+R2. BLIZZARD EMBLEM  emblem_blizzard.png 512x512
+[STYLE PREFIX] A round emblem: the Frost Eye Sigil surrounded by a spiral of
+wind-blown snowflakes and swirling flat white wind lines, frost-cyan palette,
+thick ink outline, transparent background. [GLOBAL NEGATIVE]
+R3. WHITEOUT EMBLEM  emblem_whiteout.png 512x512
+[STYLE PREFIX] A round emblem: the Frost Eye Sigil exploding outward into radial
+ice shards and starburst rays, aurora-violet and pale-frost palette, thick ink
+outline, transparent background. [GLOBAL NEGATIVE]
+R4. FREE-SPIN COUNTER PLAQUE  Frame_FSCounter.png ratio 824:622
+[STYLE PREFIX] A small hanging wooden-and-paper plaque on two short chains, pale
+paper centre empty for a counter, dark wood frame with ice crystals frozen on
+the top corners, a tiny Frost Eye Sigil at the top centre, front view,
+transparent background. [GLOBAL NEGATIVE]
+R5. MULTIPLIER BADGES (3 variants 512x512, centre empty for a number)
+  mult_badge_aurora.png (violet rim) - base-game random multiplier
+  mult_badge_rite.png   (cyan rim)   - rite progressive multiplier
+  mult_badge_max.png    (gold rim)   - when the cap is reached
+[STYLE PREFIX] A round medallion: thick ink-outlined iron ring with small ice
+spikes, a [VIOLET | CYAN | GOLD] flat-colour rim band with runes, a pale-paper
+centre left empty for a number, one white highlight arc, small snowflake
+sparkles, front view, transparent background. [GLOBAL NEGATIVE]
+R6. MULTIPLIER BURST  mult_burst.png 768x768: radial starburst of flat ink-outlined
+    shards, frost cyan + pale frost, transparent.
+
+---------------------------------------------------------------------
+7. UI - CONTROL BAR (matches reference layout; ice colours)
+---------------------------------------------------------------------
+Layout to mirror (desktop, bar width = ~60% of screen, centred at the bottom):
+  [avatar btn] [menu btn] | BALANCE | WIN | BET | [+ / -] [BIG SPIN] [A / turbo]
+Colours: bar fill night navy #0E1B2E with a thin ink outline and 2 px inner
+pale-blue line; labels in frost cyan #3FC8F4 (small bold caps); values in white.
+Spin button: round, deep ice blue #1F5FA8 with a gold ring, white circular arrow.
+Auto/Turbo: small round dark buttons with white icons, cyan ring when active.
+
+U1. BAR PLATE   ui_bar.png  2200x220 (9-slice friendly)
+[STYLE PREFIX] A wide, rounded, compact UI bar in dark night-navy with a thick
+black ink outline and a thin pale-blue inner line, subtle frost-crack lines in
+the corners, tiny rivets, completely empty interior, front view, transparent
+background. [GLOBAL NEGATIVE]
+U2. SPIN BUTTON   ui_spin.png 384x384 (+ _hover, _down, _off, _stop variants)
+[STYLE PREFIX] A large round game button: a deep ice-blue disc with a thick gold
+ring and black ink outline, a white curved-arrow "spin" symbol with a tiny
+Frost Eye Sigil in the centre, one white highlight arc, front view, transparent
+background. [GLOBAL NEGATIVE]
+  _stop: same button, the arrow replaced by a white square.
+U3. SMALL ROUND BUTTONS  ui_btn_round.png 160x160 (+ _hover, _down, _active, _off)
+  night navy disc, ink outline, 2 px pale-blue ring; _active = thick frost-cyan
+  ring; _off = muted grey-blue.
+U4. ICON SET (white flat icons on transparent, 128x128, same 8 px chunky stroke,
+    rounded ends, tiny ink outline):
+  menu (3 bars), plus, minus, auto "A" in a loop arrow, turbo lightning bolt,
+  sound on, sound off, settings gear, info "i", close "X", buy-bonus (a key
+  with a snowflake bow), paytable (a scroll).
+[STYLE PREFIX] A set of matching chunky flat white UI icons with a tiny black ink
+outline and rounded ends, identical 8 px stroke weight, on a transparent
+background: menu, plus, minus, autoplay, turbo, sound on, sound off, settings,
+info, close, buy bonus, paytable. [GLOBAL NEGATIVE]
+U5. AVATAR / HOME BUTTON  ui_avatar.png 192x192
+[STYLE PREFIX] A round badge showing a cute smiling snowball mascot head wearing
+a tiny knit beanie, glowing cyan eyes, thick ink outline, on a night-navy disc
+with a pale-blue ring, front view, transparent background. [GLOBAL NEGATIVE]
+  (This slot is where Stake's own logo/brand button appears; keep the mascot
+   neutral and unique to Frozen Rite.)
+
+BAR TYPOGRAPHY (implemented / to implement in code):
+  Labels (BALANCE / WIN / BET): "Nunito Sans" ExtraBold, 13-14 px at 1x, letter
+    spacing +1, colour #3FC8F4.
+  Values: "Nunito Sans" ExtraBold, 22-24 px, white.
+  Card titles / panel headings: "Uncial Antiqua" (SIL OFL) caps, ink black or
+    frost cyan; fallback "Cinzel" (already bundled in the repo).
+  Intro-card body: "Barlow Condensed" ExtraBold caps.
+  Logo: custom lettering only (see L1) - not a font.
+
+---------------------------------------------------------------------
+8. MENU / BUY SCREEN (paper cards, mirrors the reference menu)
+---------------------------------------------------------------------
+Cards are 330x470 px design size, paper #E9E2D0 with ink outline and a thin
+inner rune border. Everything below is ART; titles/prices/buttons are code.
+M1. CARD FRAME  card_frame.png 660x940
+[STYLE PREFIX] A tall paper card: aged cream paper texture, thick black ink
+outline with slightly torn edges, a thin inner double border with tiny angular
+runes in the corners, a small Frost Eye Sigil at the top centre, soft
+ink-stained shading in the corners, empty interior, transparent background.
+[GLOBAL NEGATIVE]
+M2. CARD ILLUSTRATIONS (each 512x400, transparent, centred, tiny oval shadow)
+  card_aurora_bet.png  (maps to bonus_bet "AURORA BET", activate)
+[STYLE PREFIX] The Frost Witch's little lantern floating over a small glowing
+snowflake circle drawn on the ground, violet and cyan sparkles around it,
+ink outline. [GLOBAL NEGATIVE]
+  card_blizzard.png    (maps to buy_blizzard "BLIZZARD RITE", buy 100x)
+[STYLE PREFIX] The Frozen Codex standing open on a tiny ice pedestal with
+swirling cyan wind lines and snow around it, cyan glow shape behind it, ink
+outline. [GLOBAL NEGATIVE]
+  card_whiteout.png    (maps to buy_whiteout "WHITEOUT RITE", buy 150x)
+[STYLE PREFIX] The Frozen Codex standing open on a tiny ice pedestal exploding
+with violet-white starburst rays and ice shards, violet glow shape behind it,
+ink outline. [GLOBAL NEGATIVE]
+  (Each card shows a small "SCATTER" tag in code; the codex tint = cyan for
+   Blizzard, violet for Whiteout, gold-rimmed for Aurora Bet.)
+M3. SLIDER ART  card_slider.png 560x60: a thin ink bar, filled part frost cyan,
+    unfilled part black, with a small ice-lantern knob.
+M4. BUTTONS  btn_card_primary.png 520x90 (frost-cyan ink-outlined rounded
+    rectangle, "ACTIVATE/BUY" drawn by code in white), btn_card_disabled.png
+    (dark grey-blue), same size.
+M5. BET PLAQUE  bet_plaque.png 840x260
+[STYLE PREFIX] A small rolled-paper plaque: cream paper with torn edges, ink
+outline, two empty round button slots on the left and right,
+frozen fern leaves with frost curling around the bottom corners, empty centre
+for text, front view, transparent background. [GLOBAL NEGATIVE]
+M6. CLOSE BUTTON  btn_close.png 128x128: round night-navy disc, ink outline, white X.
+
+---------------------------------------------------------------------
+9. INTRO SCREEN, LOADING, TRANSITION
+---------------------------------------------------------------------
+I1. INTRO CARDS (3)  intro_card_frame.png 900x1000
+[STYLE PREFIX] A tall dark card: night-navy fill with a torn, ragged frost-cyan
+ink edge with a few cyan drips and frozen droplets, a thin pale-blue inner
+border with a small notch ornament at the top centre, empty interior (title and
+text drawn by code), front view, transparent background. [GLOBAL NEGATIVE]
+  Content (code-drawn text, our game):
+    Card 1 - "THE AURORA AWAKENS": winning spins can be boosted by an Aurora
+             multiplier up to x25.
+    Card 2 - "CHOOSE YOUR RITE": 3 Codex scatters awaken the Blizzard or
+             Whiteout rite with a climbing multiplier.
+    Card 3 - "SPIN THE FROST WHEEL": the wheel multiplies the whole feature win
+             up to x100 - reaching a 10,000x max win.
+I2. INTRO BACKDROP: reuse bg_base_desktop (blurred 20%).
+I3. PRESS-TO-CONTINUE: text by code, in "Uncial Antiqua"/"Cinzel", ink black,
+    gentle pulse.
+I4. LOADING SPINNER  loader_sigil.png 256x256: the Frost Eye Sigil, slowly
+    rotating, eye blinking.
+T1. TRANSITION - SNOW-WRAITH WIPE  (16 frames 1280x720 or a Spine rig)
+[STYLE PREFIX] Large round swirling snow-cloud blobs with ragged edges in
+night-navy and pale blue, each blob containing one big glowing frost-cyan eye
+with a white highlight and a vertical slit pupil, the blobs grow from the screen
+edges until they cover the whole frame, thick ink outline, full-frame 16:9,
+transparent background where uncovered. [GLOBAL NEGATIVE]
+  (Mirror it for the reveal. Original design: snow wraiths, not ink blobs.)
+
+---------------------------------------------------------------------
+10. LOGO & BRAND
+---------------------------------------------------------------------
+L1. LOGO   logo.webp 1800x700 transparent (also logo_small for top-left, 420x160)
+[STYLE PREFIX] A game title logo reading "FROZEN RITE" in chunky hand-brushed
+lettering with sharp icicle-like drips hanging from the letters, thick black ink
+outline, letters filled with a frost-cyan to deep-blue flat two-tone, a white
+highlight stripe on each letter, "FROZEN" larger on the top line and "RITE" on
+the bottom line, the Frost Eye Sigil sits as a round emblem between the two
+words, a few snow flakes, centred, transparent
+background. [GLOBAL NEGATIVE without "text, letters"]
+L2. LOBBY THUMBNAILS  thumb_square.webp 1024x1024, thumb_wide.webp 1920x1080
+[STYLE PREFIX] Key art: the Frost Witch centred in front of the glowing board
+and the wheel on the pale snowfield, acolytes on both sides, lanterns at the
+corners, logo area left empty at the top. [GLOBAL NEGATIVE]
+L3. FAVICON favicon.svg: the Frost Eye Sigil, 2-colour (ink black on frost cyan).
+
+---------------------------------------------------------------------
+11. WIN PRESENTATION
+---------------------------------------------------------------------
+V1. WIN TIER PLATES (1400x500 each; code draws the amount):
+    win_big, win_mega, win_epic, win_max, win_superwin
+[STYLE PREFIX] A wide win-banner plate in the style of a torn paper scroll with
+an ink outline: [TIER], [TIER DETAILS], empty centre for the number, front
+view, transparent background. [GLOBAL NEGATIVE]
+  TIER DETAILS: BIG = pale paper + cyan band; MEGA = + deep-blue band and ice
+    spikes; EPIC = + violet band and gold trim; MAX / SUPER = gold-and-violet
+    crown of ice spikes and a starburst behind the scroll.
+V2. ICE COIN  ice_coin.png 256x256 (+ 8-frame spin sheet)
+[STYLE PREFIX] A round token coin made of pale-blue ice with a thick black ink
+outline, a gold ring around the rim, a small Frost Eye Sigil stamped in the
+centre, one white highlight arc, front view, transparent background.
+[GLOBAL NEGATIVE]
+V3. WIN METER BURST: 12-frame sheet, flat starburst shards in cyan, 512x512.
+V4. "YOU WON" PANEL: reuse card_frame.png at 1200x800 with a cyan header strip.
+
+---------------------------------------------------------------------
+12. AUDIO PROMPTS  (ElevenLabs Music/SFX or similar; licensed for commercial use)
+---------------------------------------------------------------------
+Brief: playful-eerie winter ritual. Instruments: celesta, glockenspiel, toy
+piano, pizzicato strings, soft bass marimba, light brushed percussion, a single
+"ooh" choir, wind and sleigh-bell textures. Key: D minor / F major mix. No
+words. Tone is cute-spooky, not horror. Music -16 LUFS, SFX peak -3 dBFS.
+WAV 44.1 kHz, packed into the audio sprite (same ids as the code uses).
+
+MUSIC
+  bgm_main            90 s loop, 92 BPM  "Playful eerie winter-ritual theme: celesta
+                       melody over pizzicato strings and soft marimba bass, gentle
+                       wind, a quiet choir pad, seamless loop"
+  bgm_freespin        80 s loop, 112 BPM "Blizzard rite: driving brushed drums,
+                       staccato strings, howling wind texture, rising choir,
+                       urgent but fun, seamless loop"
+  bgm_freespin_whiteout (new) 60 s loop, 128 BPM "Whiteout rite: fast glittering
+                       glockenspiel arpeggios, big choir hits, pounding low drums,
+                       bright shimmering synth, seamless loop"
+  jng_intro_fs        5 s "mysterious reveal: harp glissando up, choir swell, big
+                       soft drum hit, shimmering tail"
+  bgm_winlevel_big / mega / epic / max / superwin   12-20 s, escalating
+                       "winter fanfare for a [TIER] win: celesta and brass
+                       sting, rising choir, each tier adds layers and tempo"
+
+SFX (keep existing ids)
+  sfx_btn_general ........ soft glassy tick 0.15 s
+  sfx_btn_spin ........... snowy whoosh + small chime 0.4 s
+  sfx_reel_stop_1..5 ..... soft snowball thump + tiny bell, pitch up each reel
+  sfx_symbols_landing .... light snow-crunch pat, low symbols softer
+  sfx_royals_landing ..... crunch + small marimba note (card ranks)
+  sfx_scatter_stop_1..5 .. glassy gong that gets fuller with each scatter
+  sfx_scatter_reveal/win/win_v2 . book cracking open: ice crack, magic rising
+                       swell, sparkle
+  sfx_anticipation(_start) rising shimmering riser, loopable, builds to a held note
+  sfx_superfreespin ...... huge ice-shatter hit + choir stab + long reverb
+  sfx_fs_respins ......... bright bell cascade + whoosh
+  sfx_winlevel_small/standard/nice/substantial/end . escalating chimes 0.5-2.5 s
+  sfx_youwon_panel ....... warm shimmering chord swell
+  sfx_bigwin_coinloop .... loopable stream of ice tokens clinking into a bowl
+  sfx_wild_explode ....... aurora ribbon bursting into glass shards
+  sfx_multiplier_* ....... 'up' ascending sparkle; 'reset' descending tone;
+                       'explosion' cracking ice burst; 'landing' chime
+  (new) sfx_wheel_spin ... ratcheting wheel ticks decelerating over 4.5 s, icy ring
+  (new) sfx_wheel_land ... heavy bell strike + choir swell + sparkle tail 2 s
+  (new) sfx_rite_blizzard/whiteout . blizzard = wind gust + soft horn swell;
+                       whiteout = bright crystal shockwave + riser, ~3 s each
+  (new) sfx_aurora_mult .. quick magical whoosh + glass sparkle rising 0.8 s
+  (new) sfx_wraith_wipe .. airy whoosh with low spooky "ooh" for the transition 1 s
+
+---------------------------------------------------------------------
+13. FILE MAP (so assets drop straight into the game)
+---------------------------------------------------------------------
+  Symbols .......... h1..h5.webp, l1..l4.webp (A K Q J), w.png, s.png, explodedW.png
+  Backgrounds ...... bg_base_*, bg_blizzard_*, bg_whiteout_*
+  Scene ............ board_grid.png, chain_*.png, lantern_*.png, acolytes_*.png,
+                     banner_*.png, basin.png, props_*.png, snow_*.png, spark.png
+  Wheel ............ wheel_stand.png, wheel_face.png, wheel_hub.png, wheel_pointer.png,
+                     wheel_tail.png, wheel_win_flare.png
+  Features ......... rite_banner_frame.png, emblem_*.png, Frame_FSCounter.png,
+                     mult_badge_*.png, mult_burst.png
+  UI ............... ui_bar.png, ui_spin*.png, ui_btn_round*.png, icons_*.png, ui_avatar.png
+  Menu ............. card_frame.png, card_aurora_bet/blizzard/whiteout.png, card_slider.png,
+                     btn_card_*.png, bet_plaque.png, btn_close.png
+  Flow ............. intro_card_frame.png, loader_sigil.png, transition frames
+  Brand ............ logo.webp, thumb_*.webp, favicon.svg
+  Win .............. win_*.png, ice_coin.png
+
+---------------------------------------------------------------------
+14. PRODUCTION CHECKLIST
+---------------------------------------------------------------------
+[ ] Anchors A1/A2/A3 approved before anything else.
+[ ] All 9 paying symbols side by side at 90 px: distinct silhouettes + colours.
+[ ] Every asset uses ONLY the locked palette; no red/orange anywhere.
+[ ] Outline weight and shading identical across symbols, props, UI.
+[ ] Frost Eye Sigil on: logo, banners, scatter, wheel hub, cards, buttons.
+[ ] Background centres stay empty/low contrast in all 3 variants + portrait.
+[ ] Layers exported for every animated asset.
+[ ] Nothing resembles the reference game's characters, emblem or lettering.
+[ ] Text contrast: white on #0E1B2E and #14141C on #E9E2D0 both > 7:1.
+[ ] Audio loops seamless; loudness normalised; licences recorded.
+[ ] Keep generation logs/licences (needed for platform approval).
+
+---------------------------------------------------------------------
+15. CODE FOLLOW-UPS THESE PROMPTS IMPLY (not done yet)
+---------------------------------------------------------------------
+  - Flip the in-game look from the current dark glacier theme to this light
+    snowfield look (background art, ICE palette constants, bar colours).
+  - Move the Frost Wheel from a full-screen overlay to a mounted wheel above the
+    board, as in the reference layout.
+  - Replace the framed reel board with the hand-drawn tilted grid (board_grid.png).
+  - Switch the bar font to Nunito Sans and card titles to Uncial Antiqua.
+  - Add the paper-card buy menu (Aurora Bet / Blizzard / Whiteout).
+=====================================================================
