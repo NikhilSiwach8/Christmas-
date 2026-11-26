@@ -11,6 +11,7 @@
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
+	import { FONT_TITLE, FONT_UI } from '../game/uiTheme';
 	import { ICE, UI_UNIT } from '../game/theme';
 
 	const context = getContext();
@@ -57,7 +58,7 @@
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
 				text={`x${value}`}
-				style={{ fontFamily: 'proxima-nova', fontWeight: '800', fontSize: UI_UNIT * 0.4, fill: ICE.frost }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.4, fill: ICE.frost }}
 			/>
 		</Container>
 	</FadeContainer>

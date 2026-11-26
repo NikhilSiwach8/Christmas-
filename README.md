@@ -7,7 +7,8 @@ An original 5x4 (1,024 ways) ice-themed slot inspired by the feature set of a da
 |---|---|---|
 | Plan | `docs/frost-ritual-reskin-plan.md` | done |
 | Math model (Python, Stake Math SDK) | `games/frozen_rite/` | complete: RTP 96.70% in all 4 modes at 100k sims/mode, SDK format + risk checks pass |
-| Frontend (Svelte + PixiJS, Stake Web SDK) | `frontend/frozen_rite/` | working: new events render in Storybook; **art/audio are the SDK sample's placeholders (ice colour-graded)** |
+| Asset prompts (art, UI, audio) | `docs/asset-prompts.md` | done |
+| Frontend (Svelte + PixiJS, Stake Web SDK) | `frontend/frozen_rite/` | working: new events render in Storybook; **symbols/background/audio are the SDK sample's placeholders (ice colour-graded); control bar + fonts are themed (Cinzel, SIL OFL)** |
 
 ## Game
 - Base game: 5 reels x 4 rows, ways pays, wild (W), scatter (S, Frozen Codex), **Aurora random multiplier** (x2-x25) on winning spins.
@@ -17,7 +18,7 @@ An original 5x4 (1,024 ways) ice-themed slot inspired by the feature set of a da
 - Natural triggers pick a random rite (books are pre-drawn by the RGS); players choose a rite only via the buy modes.
 
 ## Build
-Math: see `games/frozen_rite/README.md`. Frontend: `frontend/setup.sh` (clones web-sdk, copies the app, installs, builds).
+Math: see `games/frozen_rite/README.md`. Frontend: `frontend/setup.sh` (clones web-sdk, applies `frontend/ui-theme.patch`, copies the app, installs, builds).
 
 ## Before submission (not done)
 Final art/audio, independent QA of the math (distributions, per-mode RTP with 1M+ sims), Stake math/frontend approval checklist, legal review.

@@ -3,7 +3,14 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
-		<link rel="stylesheet" href="https://use.typekit.net/aba0ebl.css" />
+		<!-- Fonts are bundled locally (SIL OFL: Cinzel + Cinzel Decorative) - no external requests -->
+		<link rel="preload" href="%sveltekit.assets%/fonts/Cinzel-Variable.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="%sveltekit.assets%/fonts/CinzelDecorative-900.woff2" as="font" type="font/woff2" crossorigin />
+		<style>
+			@font-face { font-family: 'Cinzel'; src: url('%sveltekit.assets%/fonts/Cinzel-Variable.woff2') format('woff2'); font-weight: 400 900; font-display: block; }
+			@font-face { font-family: 'Cinzel Decorative'; src: url('%sveltekit.assets%/fonts/CinzelDecorative-700.woff2') format('woff2'); font-weight: 700; font-display: block; }
+			@font-face { font-family: 'Cinzel Decorative'; src: url('%sveltekit.assets%/fonts/CinzelDecorative-900.woff2') format('woff2'); font-weight: 900; font-display: block; }
+		</style>
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 	</head>

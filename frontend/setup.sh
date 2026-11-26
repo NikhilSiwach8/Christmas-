@@ -11,6 +11,8 @@ mkdir -p "$SDK/apps/frozen_rite"
 cp -r "$HERE/frozen_rite/." "$SDK/apps/frozen_rite/"
 cp -r "$SDK/apps/ways/static/assets" "$SDK/apps/frozen_rite/static/assets"
 cd "$SDK"
+# Themeable shared UI (fonts/colours for the control bar). Idempotent.
+if [ ! -f packages/components-ui-pixi/src/theme.svelte.ts ]; then patch -p1 < "$HERE/ui-theme.patch"; fi
 pnpm install --no-frozen-lockfile
 pnpm exec turbo run build --filter=frozen_rite
 echo "Built: $SDK/apps/frozen_rite/build   |   Dev: pnpm run dev --filter=frozen_rite   |   Stories: pnpm run storybook --filter=frozen_rite"

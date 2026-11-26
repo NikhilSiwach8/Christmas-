@@ -29,10 +29,15 @@
 	import MultiplierBadge from './MultiplierBadge.svelte';
 	import FrostWheel from './FrostWheel.svelte';
 	import { FROZEN_RITE_BET_MODE_META } from '../game/betModeMeta';
+	import { applyIceUiTheme, loadFonts, FONT_TITLE } from '../game/uiTheme';
+	import { ICE } from '../game/theme';
 
 	const context = getContext();
 
-	onMount(() => {
+	applyIceUiTheme();
+
+	onMount(async () => {
+		await loadFonts();
 		context.stateLayout.showLoadingScreen = true;
 		stateMeta.betModeMeta = FROZEN_RITE_BET_MODE_META;
 	});
@@ -81,11 +86,12 @@
 					anchor={{ x: 1, y: 0 }}
 					text="FROZEN RITE"
 					style={{
-						fontFamily: 'proxima-nova',
-						fontSize: REM * 1.5,
-						fontWeight: '600',
+						fontFamily: FONT_TITLE,
+						fontSize: REM * 1.6,
+						fontWeight: '900',
 						lineHeight: REM * 2,
-						fill: 0xffffff,
+						letterSpacing: 2,
+						fill: ICE.frost,
 					}}
 				/>
 			{/snippet}

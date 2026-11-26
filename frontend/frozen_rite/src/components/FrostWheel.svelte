@@ -16,6 +16,7 @@
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
+	import { FONT_TITLE, FONT_UI } from '../game/uiTheme';
 	import { ICE, WHEEL_COLORS, UI_UNIT } from '../game/theme';
 
 	const context = getContext();
@@ -90,7 +91,7 @@
 				anchor={{ x: 0.5, y: 0.5 }}
 				y={-RADIUS - UI_UNIT * 0.55}
 				text="FROST WHEEL"
-				style={{ fontFamily: 'proxima-nova', fontWeight: '800', fontSize: UI_UNIT * 0.42, fill: ICE.glacier }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.42, fill: ICE.glacier }}
 			/>
 			<Container {rotation}>
 				<Graphics draw={drawWheel} />
@@ -101,7 +102,7 @@
 							anchor={{ x: 0.5, y: 0.5 }}
 							y={-RADIUS * 0.72}
 							text={`x${seg}`}
-							style={{ fontFamily: 'proxima-nova', fontWeight: '800', fontSize: UI_UNIT * 0.3, fill: ICE.gold }}
+							style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.3, fill: ICE.gold }}
 						/>
 					</Container>
 				{/each}
@@ -117,7 +118,7 @@
 					anchor={{ x: 0.5, y: 0.5 }}
 					y={RADIUS + UI_UNIT * 0.6}
 					text={`x${result}  ${bookEventAmountToCurrencyString(pre)} > ${bookEventAmountToCurrencyString(post)}`}
-					style={{ fontFamily: 'proxima-nova', fontWeight: '800', fontSize: UI_UNIT * 0.3, fill: ICE.frost }}
+					style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.3, fill: ICE.frost }}
 				/>
 			{/if}
 		</Container>
