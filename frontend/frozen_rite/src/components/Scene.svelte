@@ -1,32 +1,27 @@
 <script lang="ts">
-	import { Container, Graphics } from 'pixi-svelte';
+	import { Sprite } from 'pixi-svelte';
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
-	import { ICE } from '../game/theme';
-	import { drawAcolyte } from '../game/art';
 
 	const context = getContext();
 	const layout = $derived(context.stateGameDerived.boardLayout());
 	const left = $derived(layout.x - layout.width / 2);
 	const right = $derived(layout.x + layout.width / 2);
-	// acolyte group layout: [dx, dy, radius]
-	const group = [
-		[0, 40, 26],
-		[-44, 90, 22],
-		[44, 96, 24],
-	];
+	const ground = $derived(layout.y + 178); // feet line of the side props
+
+	// native aspect ratios of the generated props (w/h)
+	const BANNER = 278 / 640;
+	const PRAY = 398 / 512;
+	const STAFF = 400 / 512;
 </script>
 
 <MainContainer>
+	<!-- standing banners with the Frost Eye Sigil (mirrored on the right) -->
+	<Sprite key="prop_banner" anchor={{ x: 0.5, y: 1 }} x={left - 205} y={ground - 6} height={250} width={250 * BANNER} />
+	<Sprite key="prop_banner" anchor={{ x: 0.5, y: 1 }} x={right + 205} y={ground - 6} height={250} width={-250 * BANNER} />
+
 	<!-- frost acolytes -->
-	{#each [-1, 1] as side (side)}
-		<Container x={(side < 0 ? left : right) + side * 120} y={layout.y + 70}>
-			{#each group as [dx, dy, r], i (i)}
-				<Container x={dx} y={dy} scale={{ x: side, y: 1 }}>
-					<Graphics draw={(g) => drawAcolyte(g, r, i === 1 ? ICE.aurora : ICE.deep)} />
-				</Container>
-			{/each}
-		</Container>
-	{/each}
+	<Sprite key="prop_acolytes_pray" anchor={{ x: 0.5, y: 1 }} x={left - 95} y={ground} height={190} width={190 * PRAY} />
+	<Sprite key="prop_acolytes_staff" anchor={{ x: 0.5, y: 1 }} x={right + 95} y={ground} height={190} width={-190 * STAFF} />
 </MainContainer>

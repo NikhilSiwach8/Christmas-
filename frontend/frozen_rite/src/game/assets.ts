@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	prop_basin: {
+		type: 'sprite',
+		src: '/art/props/basin.webp',
+	},
+	prop_banner: {
+		type: 'sprite',
+		src: '/art/props/banner.webp',
+	},
+	prop_acolytes_staff: {
+		type: 'sprite',
+		src: '/art/props/acolytes_staff.webp',
+	},
+	prop_acolytes_pray: {
+		type: 'sprite',
+		src: '/art/props/acolytes_pray.webp',
+	},
+	prop_lantern_double: {
+		type: 'sprite',
+		src: '/art/props/lantern_double.webp',
+	},
 	prop_lantern_leaning: {
 		type: 'sprite',
 		src: '/art/props/lantern_leaning.webp',

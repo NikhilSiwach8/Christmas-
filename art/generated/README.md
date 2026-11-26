@@ -33,4 +33,9 @@ crystal totems, so the procedural chains/banners were removed from `Scene.svelte
 ## Props (batch 8)
 lantern_leaning / lantern_squat / lantern_tall (transparent): used on the four board corners (`BoardFrame.svelte`; the leaning one is mirrored on one corner).
 chain.webp (667x2000, transparent): not used in the game - the painted backgrounds already include chains. Kept for later (e.g. a hanging menu plaque).
-Still missing props: acolytes, banner, basin, totems (the game still draws acolytes and basins procedurally).
+
+
+## Scene props (batch 9)
+basin (flaming stone basin, x2 beside the wheel), banner (standing, mirrored on the right), acolytes_pray (left group), acolytes_staff (right group, mirrored),
+lantern_double (unused so far). Wired in `Scene.svelte` and `FrostWheel.svelte`. Props are trimmed to their bounds and exported at 384-640 px tall.
+Procedural art left: the Frost Wheel itself (wheel_stand/face/hub/pointer art not generated yet), the control bar, the rite banner / badge / counter.

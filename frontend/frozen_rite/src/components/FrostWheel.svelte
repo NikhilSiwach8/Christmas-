@@ -10,7 +10,7 @@
 
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
-	import { Container, Graphics, Text } from 'pixi-svelte';
+	import { Container, Graphics, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { waitForTimeout } from 'utils-shared/wait';
@@ -19,7 +19,7 @@
 	import { getContext } from '../game/context';
 	import { ICE, WHEEL_COLORS } from '../game/theme';
 	import { FONT_TITLE, FONT_UI } from '../game/uiTheme';
-	import { drawBasin, drawSigil } from '../game/art';
+	import { drawSigil } from '../game/art';
 
 	const context = getContext();
 	const R = 50; // resting radius (main-layout units)
@@ -119,9 +119,14 @@
 <MainContainer>
 	<!-- stone basins with frost flames, either side of the wheel -->
 	{#each [-1, 1] as side (side)}
-		<Container x={cx + side * (R + 120)} y={cy + 6}>
-			<Graphics draw={(g) => drawBasin(g, 84)} />
-		</Container>
+		<Sprite
+			key="prop_basin"
+			anchor={{ x: 0.5, y: 1 }}
+			x={cx + side * (R + 118)}
+			y={cy + 36}
+			height={92}
+			width={96 * 1.05}
+		/>
 	{/each}
 
 	<Container x={cx} y={cy} scale={zoom.current} zIndex={60}>
