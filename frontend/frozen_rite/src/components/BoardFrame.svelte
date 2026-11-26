@@ -5,77 +5,53 @@
 </script>
 
 <script lang="ts">
-	import { Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { Container, Graphics } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
+	import { ICE } from '../game/theme';
+	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
+	import { drawLantern, inkStroke, seeded, wobble } from '../game/art';
 
 	const context = getContext();
-	const SPINE_SCALE = { width: 0.62, height: 0.66 };
-	const SPRITE_SCALE = { width: 1.25, height: 0.72 };
-	const POSITION_ADJUSTMENT = 1.01;
-
-	type AnimationName = 'reelhouse_glow_start' | 'reelhouse_glow_idle' | 'reelhouse_glow_exit';
-
-	let animationName = $state<AnimationName | undefined>(undefined);
-	let loop = $state(false);
+	let glow = $state(false);
 
 	context.eventEmitter.subscribeOnMount({
-		boardFrameGlowShow: () => {
-			animationName = 'reelhouse_glow_start';
-			loop = false;
-		},
-		boardFrameGlowHide: () => {
-			if (animationName) animationName = 'reelhouse_glow_exit';
-		},
+		boardFrameGlowShow: () => (glow = true),
+		boardFrameGlowHide: () => (glow = false),
 	});
+
+	const layout = $derived(context.stateGameDerived.boardLayout());
+	const x0 = $derived(layout.x - layout.width / 2);
+	const y0 = $derived(layout.y - layout.height / 2);
+
+	/** Hand-scratched chalk grid on the snow (cells line up with the reels). */
+	const drawGrid = (g: import('pixi.js').Graphics) => {
+		const w = layout.width;
+		const h = layout.height;
+		const rnd = seeded(5);
+		g.roundRect(x0 - 8, y0 - 8, w + 16, h + 16, 14).fill({ color: ICE.frost, alpha: 0.5 });
+		if (glow) g.roundRect(x0 - 14, y0 - 14, w + 28, h + 28, 18).stroke({ color: ICE.glacier, width: 14, alpha: 0.4 });
+		for (let c = 0; c <= BOARD_DIMENSIONS.x; c++) {
+			const x = x0 + c * SYMBOL_SIZE;
+			inkStroke(g, wobble(x, y0 - 6, x, y0 + h + 6, 5, rnd), 4, ICE.glacier);
+		}
+		for (let r = 0; r <= BOARD_DIMENSIONS.y; r++) {
+			const y = y0 + r * SYMBOL_SIZE;
+			inkStroke(g, wobble(x0 - 6, y, x0 + w + 6, y, 5, rnd), 4, ICE.glacier);
+		}
+		// frost-paint splatter dots
+		for (let i = 0; i < 26; i++) {
+			const px = x0 + rnd() * w;
+			const py = y0 + rnd() * h;
+			g.circle(px, py, 1.5 + rnd() * 3).fill({ color: ICE.glacier }).stroke({ color: ICE.ink, width: 1.2 });
+		}
+	};
 </script>
 
-{#if animationName}
-	<SpineProvider
-		zIndex={-1}
-		key="reelhouse"
-		x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-		y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
-		width={context.stateGameDerived.boardLayout().width * SPINE_SCALE.width}
-		height={context.stateGameDerived.boardLayout().height * SPINE_SCALE.height}
-	>
-		<SpineTrack
-			trackIndex={0}
-			{animationName}
-			{loop}
-			listener={{
-				complete: (entry) => {
-					if (entry.animation) {
-						if (entry.animation.name === 'reelhouse_glow_start') {
-							animationName = 'reelhouse_glow_idle';
-							loop = true;
-						}
-
-						if (entry.animation.name === 'reelhouse_glow_exit') {
-							animationName = undefined;
-							loop = false;
-						}
-					}
-				},
-			}}
-		/>
-	</SpineProvider>
-{/if}
-
-<Sprite
-	key="frame_bg.png"
-	anchor={0.5}
-	x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-	y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
-	width={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.width}
-	height={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.height}
-/>
-
-<Sprite
-	key="frame_edge.png"
-	anchor={0.5}
-	x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-	y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
-	width={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.width}
-	height={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.height}
-/>
+<Graphics draw={drawGrid} />
+<!-- ice lanterns on the four corners -->
+{#each [[-1, -1], [1, -1], [-1, 1], [1, 1]] as [sx, sy], i (i)}
+	<Container x={layout.x + sx * (layout.width / 2 + 18)} y={layout.y + sy * (layout.height / 2 + 6) - 28}>
+		<Graphics draw={(g) => drawLantern(g, 34)} />
+	</Container>
+{/each}

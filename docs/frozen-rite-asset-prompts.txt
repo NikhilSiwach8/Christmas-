@@ -588,13 +588,20 @@ SFX (keep existing ids)
 [ ] Keep generation logs/licences (needed for platform approval).
 
 ---------------------------------------------------------------------
-15. CODE FOLLOW-UPS THESE PROMPTS IMPLY (not done yet)
+15. CODE FOLLOW-UPS  (status)
 ---------------------------------------------------------------------
-  - Flip the in-game look from the current dark glacier theme to this light
-    snowfield look (background art, ICE palette constants, bar colours).
-  - Move the Frost Wheel from a full-screen overlay to a mounted wheel above the
-    board, as in the reference layout.
-  - Replace the framed reel board with the hand-drawn tilted grid (board_grid.png).
-  - Switch the bar font to Nunito Sans and card titles to Uncial Antiqua.
-  - Add the paper-card buy menu (Aurora Bet / Blizzard / Whiteout).
+  [done] Light snowfield look: procedural placeholder scene in frontend/frozen_rite
+         (Background, Scene, art.ts). Palette constants flipped (game/theme.ts).
+  [done] Frost Wheel mounted above the board with basins; it lifts and enlarges
+         over the board for the spin, result shown below.
+  [done] Hand-drawn chalk grid + corner ice lanterns replace the framed board.
+  [done] Desktop bar = one dark rounded plate, cyan labels over white values,
+         big spin button, stacked +/- and Auto/Turbo (patched in ui-theme.patch).
+  [done] Fonts: Nunito Sans (bar) + Uncial Antiqua (titles), bundled locally.
+  [todo] Paper-card buy menu (Aurora Bet / Blizzard / Whiteout) - needs a patch to
+         the shared HTML modal package (components-ui-html).
+  [todo] True perspective tilt of the board (reels are flat; grid is drawn flat).
+  [todo] Swap every procedural placeholder for the generated art above.
+  [todo] Portrait/landscape/tablet bar layouts still use the default layout
+         (themed colours/fonts only).
 =====================================================================

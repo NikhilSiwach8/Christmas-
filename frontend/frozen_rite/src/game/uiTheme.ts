@@ -2,36 +2,40 @@ import { setUiTheme } from 'components-ui-pixi';
 
 import { ICE } from './theme';
 
-// Typography: engraved Roman capitals (Cinzel, SIL OFL) for UI, Cinzel Decorative for titles/logo.
-export const FONT_UI = 'Cinzel';
-export const FONT_TITLE = 'Cinzel Decorative';
+// Typography: heavy rounded sans for the bar (Nunito Sans), uncial caps for titles/cards (Uncial Antiqua). Both SIL OFL.
+export const FONT_UI = 'Nunito Sans';
+export const FONT_TITLE = 'Uncial Antiqua';
 
-/** Ice look for the shared control bar: deep-navy panels, glacier rims, frost text. */
+/** Ice-cartoon look for the shared control bar: one dark rounded plate, cyan labels over white values. */
 export const applyIceUiTheme = () =>
 	setUiTheme({
 		fontFamily: FONT_UI,
-		fontWeight: '700',
-		letterSpacing: 1.5,
-		text: ICE.frost,
-		panelFill: ICE.deep,
-		panelAlpha: 0.9,
-		panelBorder: ICE.glacier,
-		panelBorderWidth: 3,
-		buttonFill: ICE.night,
-		buttonText: ICE.frost,
+		fontWeight: '800',
+		letterSpacing: 1,
+		text: 0xffffff,
+		labelText: ICE.glacier,
+		labelScale: 0.55,
+		barPlate: true,
+		plateFill: ICE.night,
+		plateBorder: ICE.ink,
+		panelFill: ICE.night,
+		panelAlpha: 0,
+		panelBorder: ICE.ink,
+		panelBorderWidth: 0,
+		buttonFill: 0x23416b,
+		buttonText: 0xffffff,
 		buttonBorder: ICE.glacier,
 		buttonBorderWidth: 3,
 		buttonFillLight: ICE.frost,
 		buttonTextLight: ICE.night,
 		buttonDisabled: 0x2b3f55,
-		accent: ICE.gold,
-		spinFill: 0x0e6a9c,
+		accent: ICE.glacier,
+		spinFill: ICE.deep,
 	});
 
 const FONT_FILES = [
-	{ family: FONT_UI, url: '/fonts/Cinzel-Variable.woff2', weight: '400 900' },
-	{ family: FONT_TITLE, url: '/fonts/CinzelDecorative-700.woff2', weight: '700' },
-	{ family: FONT_TITLE, url: '/fonts/CinzelDecorative-900.woff2', weight: '900' },
+	{ family: FONT_UI, url: '/fonts/NunitoSans-Variable.woff2', weight: '200 1000' },
+	{ family: FONT_TITLE, url: '/fonts/UncialAntiqua-400.woff2', weight: '400' },
 ];
 
 /** Register + load the bundled fonts (works in the built app and in Storybook), so Pixi measures text correctly. */

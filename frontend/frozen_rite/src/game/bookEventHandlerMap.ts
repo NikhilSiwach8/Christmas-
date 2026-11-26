@@ -137,6 +137,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// the cap is reached: nothing extra to play, the win presentation follows via setWin/freeSpinEnd
 	},
 	riteAwaken: async (bookEvent: BookEventOfType<'riteAwaken'>) => {
+		stateGame.rite = bookEvent.rite;
 		await eventEmitter.broadcastAsync({
 			type: 'riteBannerShow',
 			rite: bookEvent.rite,

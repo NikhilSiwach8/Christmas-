@@ -56,13 +56,13 @@
 				anchor={{ x: 0.5, y: 0.5 }}
 				y={-height * 0.17}
 				text={info.title}
-				style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.44, fill: info.color }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '400', stroke: { color: ICE.ink, width: 5 }, fontSize: UI_UNIT * 0.44, fill: info.color }}
 			/>
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
 				y={height * 0.22}
 				text={purchased ? 'YOU CALLED THE RITE' : info.subtitle}
-				style={{ fontFamily: FONT_UI, fontWeight: '700', fontSize: UI_UNIT * 0.2, fill: ICE.frost }}
+				style={{ fontFamily: FONT_UI, fontWeight: '800', fontSize: UI_UNIT * 0.2, fill: ICE.frost }}
 			/>
 		</Container>
 	</FadeContainer>

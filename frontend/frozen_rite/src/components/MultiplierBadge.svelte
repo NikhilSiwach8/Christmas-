@@ -58,7 +58,7 @@
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
 				text={`x${value}`}
-				style={{ fontFamily: FONT_TITLE, fontWeight: '900', fontSize: UI_UNIT * 0.4, fill: ICE.frost }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '400', stroke: { color: ICE.ink, width: 5 }, fontSize: UI_UNIT * 0.4, fill: ICE.frost }}
 			/>
 		</Container>
 	</FadeContainer>

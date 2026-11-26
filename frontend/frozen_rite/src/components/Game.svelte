@@ -18,6 +18,7 @@
 	import Background from './Background.svelte';
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
+	import Scene from './Scene.svelte';
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
 	import Win from './Win.svelte';
@@ -68,6 +69,8 @@
 		-->
 		<Sound />
 
+		<Scene />
+
 		<MainContainer>
 			<BoardFrame />
 		</MainContainer>
@@ -79,22 +82,22 @@
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="FROZEN RITE" />
-			{/snippet}
-			{#snippet logo()}
 				<Text
-					anchor={{ x: 1, y: 0 }}
+					anchor={{ x: 0, y: 0 }}
+					x={8}
+					y={6}
 					text="FROZEN RITE"
 					style={{
 						fontFamily: FONT_TITLE,
-						fontSize: REM * 1.6,
-						fontWeight: '900',
-						lineHeight: REM * 2,
+						fontSize: REM * 2,
+						fontWeight: '400',
 						letterSpacing: 2,
-						fill: ICE.frost,
+						fill: ICE.glacier,
+						stroke: { color: ICE.ink, width: 7 },
 					}}
 				/>
 			{/snippet}
+			{#snippet logo()}{/snippet}
 		</UI>
 		<Win />
 		<FreeSpinIntro />
