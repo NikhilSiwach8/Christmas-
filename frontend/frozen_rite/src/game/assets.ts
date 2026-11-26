@@ -1,4 +1,57 @@
 export default {
+	// Frozen Rite generated art (static/art)
+	board_grid: {
+		type: 'sprite',
+		src: '/art/board_grid.webp',
+	},
+	sym_h1: {
+		type: 'sprite',
+		src: '/art/symbols/h1.webp',
+	},
+	sym_h2: {
+		type: 'sprite',
+		src: '/art/symbols/h2.webp',
+	},
+	sym_h3: {
+		type: 'sprite',
+		src: '/art/symbols/h3.webp',
+	},
+	sym_h4: {
+		type: 'sprite',
+		src: '/art/symbols/h4.webp',
+	},
+	sym_h5: {
+		type: 'sprite',
+		src: '/art/symbols/h5.webp',
+	},
+	sym_l1: {
+		type: 'sprite',
+		src: '/art/symbols/l1.webp',
+	},
+	sym_l2: {
+		type: 'sprite',
+		src: '/art/symbols/l2.webp',
+	},
+	sym_l3: {
+		type: 'sprite',
+		src: '/art/symbols/l3.webp',
+	},
+	sym_l4: {
+		type: 'sprite',
+		src: '/art/symbols/l4.webp',
+	},
+	sym_w: {
+		type: 'sprite',
+		src: '/art/symbols/w.webp',
+	},
+	sym_s: {
+		type: 'sprite',
+		src: '/art/symbols/s.webp',
+	},
+	sym_w_exploded: {
+		type: 'sprite',
+		src: '/art/symbols/w_exploded.webp',
+	},
 	loader: {
 		type: 'spine',
 		src: {

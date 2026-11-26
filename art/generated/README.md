@@ -12,6 +12,12 @@
 | Sigil | sigil.webp | 1254x1254 | approved |
 | Board chalk grid | board_grid_chalk.png | 1440x1180 (cell 260, margin 70) | processed (checkerboard removed, cells equalised) |
 | Board frame (unused) | board_frame_v1.webp | 1448x1086 | not used - wrong direction (framed) |
-| S Frozen Codex | - | - | **missing** |
+| S Frozen Codex | s_frozen_codex.webp | 1254x1254 | approved |
+| W exploded (post-win) | w_exploded.webp | 1086x1448 | approved |
 
 All have real alpha except the raw grid (processed by art/tools/process_grid.py).
+
+
+## In the game
+All symbols + the chalk grid are wired into `frontend/frozen_rite` (static/art/symbols/*.webp at 512 px, static/art/board_grid.webp).
+Win = bounce animation (SymbolSprite.svelte); wild shows the cracked-ice ring after a win.
