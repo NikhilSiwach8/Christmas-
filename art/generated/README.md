@@ -21,3 +21,5 @@ All have real alpha except the raw grid (processed by art/tools/process_grid.py)
 ## In the game
 All symbols + the chalk grid are wired into `frontend/frozen_rite` (static/art/symbols/*.webp at 512 px, static/art/board_grid.webp).
 Win = bounce animation (SymbolSprite.svelte); wild shows the cracked-ice ring after a win.
+
+Batch 6 effects are in `art/fx/` and are wired into the game; wild/scatter animation layers are in `art/layers/`.

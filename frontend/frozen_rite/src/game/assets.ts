@@ -1,5 +1,57 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	fx_crack: {
+		type: 'sprite',
+		src: '/art/fx/crack.webp',
+	},
+	fx_boom_00: {
+		type: 'sprite',
+		src: '/art/fx/boom_00.webp',
+	},
+	fx_boom_01: {
+		type: 'sprite',
+		src: '/art/fx/boom_01.webp',
+	},
+	fx_boom_02: {
+		type: 'sprite',
+		src: '/art/fx/boom_02.webp',
+	},
+	fx_boom_03: {
+		type: 'sprite',
+		src: '/art/fx/boom_03.webp',
+	},
+	fx_boom_04: {
+		type: 'sprite',
+		src: '/art/fx/boom_04.webp',
+	},
+	fx_boom_05: {
+		type: 'sprite',
+		src: '/art/fx/boom_05.webp',
+	},
+	fx_boom_06: {
+		type: 'sprite',
+		src: '/art/fx/boom_06.webp',
+	},
+	fx_boom_07: {
+		type: 'sprite',
+		src: '/art/fx/boom_07.webp',
+	},
+	fx_boom_08: {
+		type: 'sprite',
+		src: '/art/fx/boom_08.webp',
+	},
+	fx_boom_09: {
+		type: 'sprite',
+		src: '/art/fx/boom_09.webp',
+	},
+	fx_boom_10: {
+		type: 'sprite',
+		src: '/art/fx/boom_10.webp',
+	},
+	fx_boom_11: {
+		type: 'sprite',
+		src: '/art/fx/boom_11.webp',
+	},
 	board_grid: {
 		type: 'sprite',
 		src: '/art/board_grid.webp',

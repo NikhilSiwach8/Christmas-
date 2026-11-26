@@ -1,4 +1,4 @@
-# Animation layers (batch 5) - parts sliced from the generated "separated parts" sheets
+# Animation layers (batches 5-6) - parts sliced from the generated "separated parts" sheets
 
 One folder per hero symbol: each part is a transparent PNG cropped to its bounds, plus `manifest.json` (where the part sat on the source sheet) and `_sheet.webp` (the original sheet).
 Regenerate with `art/tools/slice_layers.py` (names are given in reading order).
@@ -9,6 +9,8 @@ Regenerate with `art/tools/slice_layers.py` (names are given in reading order).
 | h2_owl | head, eye_l, eye_r, lid_l, lid_r, orb, body, stump | complete |
 | h3_yeti | head, torso, arm_staff, arm_fist, drum, foot_l, foot_r | complete |
 | h5_fox | head, body, tail, crystal_l/c/r, eye_l, eye_r, lid_l, lid_r | complete |
+| w_wisp | ribbon, crown, eye_l, eye_r, cheek_l, cheek_r, scrap_a/b/c (loose ribbon wisps), sparkle_big, sparkle_l, sparkle_r | complete |
+| s_codex | cover, book (open, with pages), glow (cyan light + snowflakes), strap | complete |
 | h4_snowman | helmet, arm_a, arm_b, shield, **snowman_stack** | **redo**: head + 2 snowballs merged into one piece |
 
 Notes
