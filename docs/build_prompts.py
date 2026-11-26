@@ -32,12 +32,12 @@ SIGIL = "A single emblem: a six-point snowflake drawn in thick black ink with pa
 add("A1", "Frost Eye Sigil (brand emblem)", "sigil.png", "1024x1024", "ANCHOR - generate first. Approve before anything else.", img(SIGIL))
 WITCH = "A cute-but-eerie little frost witch: very large round head under a pointed pale-blue hat with a drooping tip and a ring of tiny ice crystals, huge glowing cyan eyes, rosy-white cheeks, a small cloak of layered pale-blue and deep-blue fabric with a snowflake clasp, stubby hands holding a short staff topped by a hanging blue-flame ice lantern, three-quarter view, small flat oval ground shadow, filling a square composition."
 add("A2", "Frost Witch (H1, hero symbol)", "h1.webp", "1024x1024 (export 512)", "ANCHOR - generate second. Attach A1 as style reference if your tool allows.", img(WITCH))
-add("A3", "Chalk board grid", "board_grid.png", "2000x1500", "ANCHOR - generate third.", img("A hand-drawn game grid scratched into snow, seen from the front, 5 columns by 4 rows, drawn with rough glowing frost-cyan chalk lines edged in thin black ink, slightly uneven and imperfect, a few frost-cyan paint splatter dots and tiny ice shards at some intersections, a small angular rune at each outer corner, completely empty cells, no symbols."))
+add("A3", "Chalk board grid", "board_grid.png", "2000x1500", "ANCHOR - generate third.", img("A hand-drawn game grid scratched directly into snow, seen from the front, exactly 5 columns by 4 rows, drawn ONLY with rough glowing frost-cyan chalk lines edged in thin black ink, slightly uneven and imperfect, a few frost-cyan paint splatter dots and tiny ice shards at some intersections, a small angular rune at each of the four outer corners. NO frame, NO wooden posts, NO banners, NO snow piles, NO border decoration, NO outer edge: just the loose chalk lines, completely empty cells, no symbols."))
 
 # ---------------------------------------------------------------- symbols
 SYMS = {
     "H2": ("Snow Owl Oracle", "h2.webp", "A cute-but-eerie round snow owl with a huge head, fluffy white and pale-blue feathers, giant glowing cyan eyes with white highlights, tiny ice-crystal brow feathers, perched on a short ice stump, holding a glowing cyan crystal ball in one wing, three-quarter view, small flat oval ground shadow, square composition."),
-    "H3": ("Yeti Elder", "h3.webp", "A cute-but-eerie little yeti elder: round shaggy white-blue fur, long white eyebrows and beard hiding the mouth, glowing cyan eyes, a small carved ice drum hanging from a rope at the belly, tiny stubby arms holding a drumstick made of a frozen twig, three-quarter view, small flat oval ground shadow, square composition."),
+    "H3": ("Yeti Elder", "h3.webp", "A cute-but-eerie little yeti elder: round shaggy fur in DEEP ICE BLUE #1F5FA8 with pale-frost tips (clearly darker than white), a big white beard and white eyebrows hiding the mouth, glowing cyan eyes, a small carved ice drum hanging from a rope at the belly, tiny stubby arms holding a drumstick made of a frozen twig, three-quarter view, small flat oval ground shadow, square composition."),
     "H4": ("Snow Sentinel (snowman guard)", "h4.webp", "A cute-but-eerie little snowman sentinel: three stacked round snowballs with an ink outline, a dented tin-blue helmet with a snowflake emblem, glowing cyan eyes, a carrot nose, stick arms holding a round deep-blue shield bearing a six-point snowflake with an eye in the centre, small flat oval ground shadow, square composition."),
     "H5": ("Frost Fox Spirit", "h5.webp", "A cute-but-eerie frost fox spirit sitting, oversized head, pale-frost and deep-blue fur with a fluffy tail curling around its feet, three small ice crystals floating above the head, glowing cyan eyes, a small aurora-violet gem on the forehead, three-quarter view, small flat oval ground shadow, square composition."),
 }
@@ -268,6 +268,27 @@ for i, ln, p in MUSIC:
     audio.append(f"[{i}] MUSIC - {ln}\n  FILE: {i}.wav\n  COPY FROM HERE v\n{BRIEF}{p} Length: {ln}.\n  ^ END OF PROMPT\n")
 for i, ln, p in SFX:
     audio.append(f"[{i}] SFX - {ln}\n  FILE: {i}.wav\n  COPY FROM HERE v\nSound effect for a cute-spooky winter slot game: {p} Duration: {ln}. No music, no voice, clean start and end.\n  ^ END OF PROMPT\n")
+
+REVISION = """
+---------------------------------------------------------------------
+1b. REVISION NOTES (after the first generated batch)
+---------------------------------------------------------------------
+  - Gold trim on accessories (rings, rope, claws, lantern frames, hat bands) is
+    accepted as part of the house style: warm gold #F2C14E, used ONLY as trim,
+    never as a main fill. Keep it consistent on every remaining symbol.
+  - Each high-pay character must own a DISTINCT dominant colour block (>= 30% of
+    its area) so symbols stay separable at 90 px on the pale background:
+      H1 Frost Witch .... sky blue (hat + cloak)           [approved]
+      H2 Snow Owl ....... white + cyan eyes + violet scarf [approved]
+      H3 Yeti ........... DEEP ICE BLUE fur, white beard   [regenerate]
+      H4 Snowman ........ white body, deep-blue helmet + shield, gold trim
+      H5 Fox ............ aurora-violet fur with pale tips
+      S  Codex .......... cyan + gold; W Wisp .......... violet + cyan
+  - Board art must be chalk lines only (no frame/posts/banners): scene dressing
+    is separate art.
+"""
+if REVISION.strip() not in head:
+    head = head.rstrip("\n") + "\n" + REVISION
 
 # keep sections 0-1 and 13-16 from the existing file
 i2 = old.index(f"\n{bar}\n2. ANCHOR ASSETS")
