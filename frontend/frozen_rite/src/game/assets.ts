@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	prop_stump: {
+		type: 'sprite',
+		src: '/art/props/stump.webp',
+	},
+	prop_twigs: {
+		type: 'sprite',
+		src: '/art/props/twigs.webp',
+	},
+	prop_rock: {
+		type: 'sprite',
+		src: '/art/props/rock.webp',
+	},
+	prop_totem_short: {
+		type: 'sprite',
+		src: '/art/props/totem_short.webp',
+	},
+	prop_totem_tall: {
+		type: 'sprite',
+		src: '/art/props/totem_tall.webp',
+	},
 	prop_basin: {
 		type: 'sprite',
 		src: '/art/props/basin.webp',

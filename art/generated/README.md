@@ -39,3 +39,8 @@ chain.webp (667x2000, transparent): not used in the game - the painted backgroun
 basin (flaming stone basin, x2 beside the wheel), banner (standing, mirrored on the right), acolytes_pray (left group), acolytes_staff (right group, mirrored),
 lantern_double (unused so far). Wired in `Scene.svelte` and `FrostWheel.svelte`. Props are trimmed to their bounds and exported at 384-640 px tall.
 Procedural art left: the Frost Wheel itself (wheel_stand/face/hub/pointer art not generated yet), the control bar, the rite banner / badge / counter.
+
+## Ground props (batch 10)
+prop_stump, prop_twigs, prop_rock (used as ground dressing in `Scene.svelte`), prop_totem_short, prop_totem_tall (exported to static/art/props but unused:
+the painted backgrounds already contain totems). All have real transparency. With this the scene-prop set from the prompt pack is complete.
+Remaining art to generate: wheel parts, control bar + UI pieces, rite banner / counter / multiplier badges, buy-menu cards, intro cards, logo, thumbnails, win plates, audio.
