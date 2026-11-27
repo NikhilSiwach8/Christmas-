@@ -31,6 +31,7 @@ export const applyIceUiTheme = () =>
 		buttonDisabled: 0x2b3f55,
 		accent: ICE.glacier,
 		spinFill: ICE.deep,
+		spinSprite: 'ui_spin',
 	});
 
 const FONT_FILES = [

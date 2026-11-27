@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ui_spin: {
+		type: 'sprite',
+		src: '/art/ui/spin.webp',
+	},
+	ui_spin_hover: {
+		type: 'sprite',
+		src: '/art/ui/spin_hover.webp',
+	},
+	ui_spin_down: {
+		type: 'sprite',
+		src: '/art/ui/spin_down.webp',
+	},
+	ui_spin_off: {
+		type: 'sprite',
+		src: '/art/ui/spin_off.webp',
+	},
+	ft_badge_rite: {
+		type: 'sprite',
+		src: '/art/ft/badge_rite.webp',
+	},
 	ft_badge_aurora: {
 		type: 'sprite',
 		src: '/art/ft/badge_aurora.webp',

@@ -64,3 +64,10 @@ All real alpha; wired in `FrostWheel.svelte`. The wheel set from the prompt pack
 ft_rite_banner (scroll shown when a rite awakens), ft_emblem_blizzard / ft_emblem_whiteout (emblem above the banner), ft_counter_plaque (hanging free-spin counter), ft_badge_aurora (violet medallion for the base-game Aurora multiplier).
 All real alpha, wired in `RiteBanner`, `FreeSpinCounter`, `MultiplierBadge`. Text is drawn by the game in ink/blue on the paper areas (Uncial Antiqua title, Nunito Sans subtitle).
 Still using a procedural badge: the cyan "rite" progressive multiplier (and gold "max") - only the violet medallion exists.
+
+## Spin button, bar plate, rite badge (batch 15)
+ui_spin_a (normal, dark blue + gold ring) and ui_spin_b_hover (bright cyan) are used; pressed and disabled are derived from A (darkened / desaturated).
+ui_spin_c_rejected_checkerboard: has a fake checkerboard baked in and is nearly identical to A - not used.
+ft_badge_rite: cyan medallion, now the free-spin progressive multiplier badge. A 'stop' (square icon) variant of the spin button does not exist yet; the stop state shows the text label.
+ui_bar_plate: ornate dark plate (2000x674, ratio ~3:1) - NOT wired: the game's bar is a slim 9.7:1 strip, and stretching the art would distort it. Needs a wider/slimmer regeneration or a layout change.
+Spin button art is applied through `uiTheme.spinSprite` (see ui-theme.patch).
