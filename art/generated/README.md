@@ -81,3 +81,7 @@ and bury the AUTO / TURBO / MENU labels. Good candidates for larger menu buttons
 ui_icon_plus, ui_icon_minus, ui_icon_menu (white pill-style icons with ink outline; the menu icon's baked checkerboard was removed by cutting along its outlines) - wired via `uiTheme.icons` for the + / - / MENU buttons.
 ui_round_off and ui_round_active: grey disabled and glowing active versions of the ornate round button - exported but unused (the ornate round art is switched off at bar size).
 Still text labels: AUTO SPIN, TURBO, BUY BONUS (no icons generated for them).
+
+## Icons (batch 18)
+ui_icon_turbo and ui_icon_auto are wired (Turbo / Auto buttons). ui_icon_settings, ui_icon_sound_on, ui_icon_sound_off are exported but not wired: the menu's settings button is a *light* (white) button, where a white icon with a dark outline would vanish, and the sound switch uses a different component.
+Several arrived with baked white/checkerboard backgrounds and were cut along their black outlines (same method as the menu icon).

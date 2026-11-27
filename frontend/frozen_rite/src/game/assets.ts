@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ui_icon_settings: {
+		type: 'sprite',
+		src: '/art/ui/icon_settings.webp',
+	},
+	ui_icon_sound_off: {
+		type: 'sprite',
+		src: '/art/ui/icon_sound_off.webp',
+	},
+	ui_icon_sound_on: {
+		type: 'sprite',
+		src: '/art/ui/icon_sound_on.webp',
+	},
+	ui_icon_turbo: {
+		type: 'sprite',
+		src: '/art/ui/icon_turbo.webp',
+	},
+	ui_icon_auto: {
+		type: 'sprite',
+		src: '/art/ui/icon_auto.webp',
+	},
 	ui_icon_menu: {
 		type: 'sprite',
 		src: '/art/ui/icon_menu.webp',
