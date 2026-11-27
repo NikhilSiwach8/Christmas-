@@ -71,3 +71,8 @@ ui_spin_c_rejected_checkerboard: has a fake checkerboard baked in and is nearly 
 ft_badge_rite: cyan medallion, now the free-spin progressive multiplier badge. A 'stop' (square icon) variant of the spin button does not exist yet; the stop state shows the text label.
 ui_bar_plate: ornate dark plate (2000x674, ratio ~3:1) - NOT wired: the game's bar is a slim 9.7:1 strip, and stretching the art would distort it. Needs a wider/slimmer regeneration or a layout change.
 Spin button art is applied through `uiTheme.spinSprite` (see ui-theme.patch).
+
+## Round buttons + spin states (batch 16)
+ui_spin_stop (square icon) and ui_spin_disabled (grey stone) are now the real stop/disabled spin states (the derived ones are replaced).
+ui_round / ui_round_hover / ui_round_down: ornate medallion buttons. Supported via `uiTheme.roundSprite` but turned OFF: at the bar's small button size (~70 units) they overlap
+and bury the AUTO / TURBO / MENU labels. Good candidates for larger menu buttons instead.

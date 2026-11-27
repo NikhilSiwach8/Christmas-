@@ -1,5 +1,21 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ui_spin_stop: {
+		type: 'sprite',
+		src: '/art/ui/spin_stop.webp',
+	},
+	ui_round: {
+		type: 'sprite',
+		src: '/art/ui/round.webp',
+	},
+	ui_round_hover: {
+		type: 'sprite',
+		src: '/art/ui/round_hover.webp',
+	},
+	ui_round_down: {
+		type: 'sprite',
+		src: '/art/ui/round_down.webp',
+	},
 	ui_spin: {
 		type: 'sprite',
 		src: '/art/ui/spin.webp',

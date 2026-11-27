@@ -32,6 +32,7 @@ export const applyIceUiTheme = () =>
 		accent: ICE.glacier,
 		spinFill: ICE.deep,
 		spinSprite: 'ui_spin',
+		roundSprite: '', // ornate round art exists (ui_round*) but is too detailed at button size; set to 'ui_round' to try it
 	});
 
 const FONT_FILES = [
