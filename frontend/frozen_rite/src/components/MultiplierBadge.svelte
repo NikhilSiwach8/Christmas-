@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-	import { Container, Text, Graphics } from 'pixi-svelte';
+	import { Container, Text, Graphics, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { waitForTimeout } from 'utils-shared/wait';
@@ -48,17 +48,21 @@
 		scale={pop}
 		zIndex={40}
 	>
-		<Graphics
-			draw={(g) => {
-				g.circle(0, 0, UI_UNIT * 0.55).fill({ color: ICE.night, alpha: 0.9 });
-				g.circle(0, 0, UI_UNIT * 0.55).stroke({ color, width: 5 });
-			}}
-		/>
+		{#if kind === 'aurora'}
+			<Sprite key="ft_badge_aurora" anchor={0.5} width={UI_UNIT * 1.2} height={UI_UNIT * 1.2 * (256 / 235)} />
+		{:else}
+			<Graphics
+				draw={(g) => {
+					g.circle(0, 0, UI_UNIT * 0.55).fill({ color: ICE.night, alpha: 0.9 });
+					g.circle(0, 0, UI_UNIT * 0.55).stroke({ color, width: 5 });
+				}}
+			/>
+		{/if}
 		<Container>
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
 				text={`x${value}`}
-				style={{ fontFamily: FONT_TITLE, fontWeight: '400', stroke: { color: ICE.ink, width: 5 }, fontSize: UI_UNIT * 0.4, fill: ICE.frost }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '400', stroke: { color: ICE.ink, width: 5 }, fontSize: UI_UNIT * 0.4, fill: kind === 'aurora' ? ICE.ink : ICE.frost }}
 			/>
 		</Container>
 	</FadeContainer>

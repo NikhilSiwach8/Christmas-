@@ -59,3 +59,8 @@ Unused so far: fx_shard.
 ## Wheel extras (batch 13)
 wheel_win_flare (starburst behind the wheel when it lands), wheel_tag (paper tag plate behind the result line), wheel_tail (frost serpent beside the wheel post, gentle sway, hidden while the wheel is lifted).
 All real alpha; wired in `FrostWheel.svelte`. The wheel set from the prompt pack is now complete.
+
+## Feature art (batch 14)
+ft_rite_banner (scroll shown when a rite awakens), ft_emblem_blizzard / ft_emblem_whiteout (emblem above the banner), ft_counter_plaque (hanging free-spin counter), ft_badge_aurora (violet medallion for the base-game Aurora multiplier).
+All real alpha, wired in `RiteBanner`, `FreeSpinCounter`, `MultiplierBadge`. Text is drawn by the game in ink/blue on the paper areas (Uncial Antiqua title, Nunito Sans subtitle).
+Still using a procedural badge: the cyan "rite" progressive multiplier (and gold "max") - only the violet medallion exists.

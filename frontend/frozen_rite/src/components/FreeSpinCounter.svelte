@@ -11,11 +11,13 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { anchorToPivot, BitmapText, Container, Sprite, type Sizes } from 'pixi-svelte';
+	import { anchorToPivot, Text, Container, Sprite, type Sizes } from 'pixi-svelte';
+	import { FONT_UI } from '../game/uiTheme';
+	import { ICE } from '../game/theme';
 
 	const context = getContext();
-	const PANEL_KEY_DESKTOP = 'Frame_FSCounter.png';
-	const PANEL_RATIO_DESKTOP = 824 / 622;
+	const PANEL_KEY_DESKTOP = 'ft_counter';
+	const PANEL_RATIO_DESKTOP = 415 / 320;
 	const panelKey = PANEL_KEY_DESKTOP;
 	const panelWidth = $derived(SYMBOL_SIZE * 2);
 	const panelSizes = $derived({
@@ -34,7 +36,7 @@
 			context.stateGameDerived.boardLayout().height * 0.5,
 	});
 
-	const fontSize = SYMBOL_SIZE * 0.275;
+	const fontSize = 17;
 
 	let show = $state(false);
 	let current = $state(0);
@@ -63,27 +65,31 @@
 		<Sprite key={panelKey} {...panelSizes} />
 		<Container
 			x={panelSizes.width * 0.5}
-			y={panelSizes.height * 0.48}
+			y={panelSizes.height * 0.6}
 			pivot={anchorToPivot({
 				sizes: textContainerSizes,
 				anchor: { x: 0.5, y: 0.5 },
 			})}
 		>
-			<BitmapText
+			<Text
 				text={'FREE SPIN'}
 				style={{
-					fontFamily: 'gold',
+					fontFamily: FONT_UI,
+					fontWeight: '800',
+					fill: ICE.ink,
 					fontSize,
 					wordWrap: false,
 				}}
 				onresize={(sizes) => (titleSizes = sizes)}
 			/>
-			<BitmapText
+			<Text
 				text={`${current} OF ${total}`}
 				{...counterPosition}
 				anchor={{ x: 0.5, y: 0 }}
 				style={{
-					fontFamily: 'gold',
+					fontFamily: FONT_UI,
+					fontWeight: '800',
+					fill: ICE.ink,
 					fontSize,
 				}}
 				onresize={(sizes) => (counterSizes = sizes)}

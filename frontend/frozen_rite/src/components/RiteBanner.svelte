@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { Container, Rectangle, Text } from 'pixi-svelte';
+	import { Container, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { waitForTimeout } from 'utils-shared/wait';
@@ -23,8 +23,8 @@
 	let purchased = $state(false);
 	const info = $derived(RITE_INFO[rite]);
 	const layout = $derived(context.stateGameDerived.boardLayout());
-	const width = UI_UNIT * 5.2;
-	const height = UI_UNIT * 1.5;
+	const width = 560; // scroll art is 929x300
+	const height = (width * 300) / 929;
 
 	context.eventEmitter.subscribeOnMount({
 		riteBannerShow: async (e) => {
@@ -41,28 +41,26 @@
 
 <MainContainer>
 	<FadeContainer {show} x={layout.x} y={layout.y} zIndex={50}>
-		<Rectangle
-			{width}
-			{height}
-			borderRadius={18}
-			backgroundColor={ICE.night}
-			backgroundAlpha={0.88}
-			borderColor={info.color}
-			borderWidth={4}
-			anchor={{ x: 0.5, y: 0.5 }}
+		<Sprite
+			key={rite === 'blizzard' ? 'ft_emblem_blizzard' : 'ft_emblem_whiteout'}
+			anchor={0.5}
+			y={-height * 0.5 - 62}
+			width={140}
+			height={140}
 		/>
-		<Container>
+		<Sprite key="ft_rite_banner" anchor={0.5} {width} {height} />
+		<Container y={height * 0.03}>
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
-				y={-height * 0.17}
+				y={-height * 0.1}
 				text={info.title}
-				style={{ fontFamily: FONT_TITLE, fontWeight: '400', stroke: { color: ICE.ink, width: 5 }, fontSize: UI_UNIT * 0.44, fill: info.color }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '400', fontSize: 34, fill: rite === 'blizzard' ? ICE.deep : 0x5a3fc0, stroke: { color: ICE.paper, width: 3 } }}
 			/>
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}
-				y={height * 0.22}
+				y={height * 0.1}
 				text={purchased ? 'YOU CALLED THE RITE' : info.subtitle}
-				style={{ fontFamily: FONT_UI, fontWeight: '800', fontSize: UI_UNIT * 0.2, fill: ICE.frost }}
+				style={{ fontFamily: FONT_UI, fontWeight: '800', fontSize: 12, fill: ICE.ink, stroke: { color: ICE.paper, width: 3 } }}
 			/>
 		</Container>
 	</FadeContainer>

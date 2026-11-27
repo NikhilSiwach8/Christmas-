@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ft_badge_aurora: {
+		type: 'sprite',
+		src: '/art/ft/badge_aurora.webp',
+	},
+	ft_counter: {
+		type: 'sprite',
+		src: '/art/ft/counter.webp',
+	},
+	ft_emblem_whiteout: {
+		type: 'sprite',
+		src: '/art/ft/emblem_whiteout.webp',
+	},
+	ft_emblem_blizzard: {
+		type: 'sprite',
+		src: '/art/ft/emblem_blizzard.webp',
+	},
+	ft_rite_banner: {
+		type: 'sprite',
+		src: '/art/ft/rite_banner.webp',
+	},
 	wheel_flare: {
 		type: 'sprite',
 		src: '/art/wheel/flare.webp',
