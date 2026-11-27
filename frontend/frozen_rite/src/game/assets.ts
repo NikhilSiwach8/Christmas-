@@ -1,5 +1,25 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	wheel_stand: {
+		type: 'sprite',
+		src: '/art/wheel/stand.webp',
+	},
+	wheel_face: {
+		type: 'sprite',
+		src: '/art/wheel/face.webp',
+	},
+	wheel_hub: {
+		type: 'sprite',
+		src: '/art/wheel/hub.webp',
+	},
+	wheel_pointer: {
+		type: 'sprite',
+		src: '/art/wheel/pointer.webp',
+	},
+	fx_shard: {
+		type: 'sprite',
+		src: '/art/fx/shard.webp',
+	},
 	fx_snow_a: {
 		type: 'sprite',
 		src: '/art/fx/snow_a.webp',

@@ -10,19 +10,24 @@
 
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
-	import { Container, Graphics, Sprite, Text } from 'pixi-svelte';
+	import { Container, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
-	import { ICE, WHEEL_COLORS } from '../game/theme';
+	import { ICE } from '../game/theme';
 	import { FONT_TITLE, FONT_UI } from '../game/uiTheme';
-	import { drawSigil } from '../game/art';
 
 	const context = getContext();
-	const R = 50; // resting radius (main-layout units)
+	// Wheel art geometry (measured from the generated stand: opening centre (289,267) r=134.5 in the 580x679 export).
+	const HOLE = 40; // opening radius in layout units
+	const K = HOLE / 134.5; // layout units per exported pixel
+	const R = HOLE; // radius used for text placement
+	const STAND = { w: 580 * K, h: 679 * K, ax: 289 / 580, ay: 267 / 679 };
+	const FACE_W = (627 / 288) * HOLE * 1.04; // face disc radius is 288 exported px; tuck it slightly under the rim
+	const BELOW = (679 - 267) * K; // stand height below the opening centre
 
 	let segments = $state<number[]>([1, 2, 3, 5, 10, 25, 50, 100]);
 	let rotation = $state(0);
@@ -36,40 +41,8 @@
 
 	const layout = $derived(context.stateGameDerived.boardLayout());
 	const cx = $derived(layout.x);
-	const cyRest = $derived(layout.y - layout.height / 2 - R - 40);
+	const cyRest = $derived(layout.y - layout.height / 2 - BELOW - 3);
 	const cy = $derived(cyRest + (layout.y - cyRest) * lift.current);
-
-	/** Wheel face: eight flat-coloured wedges with ink dividers, spiked rim, sigil hub. */
-	const drawWheel = (g: import('pixi.js').Graphics) => {
-		const n = segments.length;
-		const step = (Math.PI * 2) / n;
-		for (let i = 0; i < n; i++) {
-			const a0 = i * step - Math.PI / 2 - step / 2;
-			g.moveTo(0, 0).arc(0, 0, R, a0, a0 + step).lineTo(0, 0).fill({ color: WHEEL_COLORS[i % WHEEL_COLORS.length] });
-			g.moveTo(0, 0).lineTo(Math.cos(a0) * R, Math.sin(a0) * R).stroke({ color: ICE.ink, width: 3 });
-		}
-		g.circle(0, 0, R).stroke({ color: ICE.ink, width: 6 });
-	};
-	const drawRim = (g: import('pixi.js').Graphics) => {
-		// heavy dark rim with eight white ice spikes
-		g.circle(0, 0, R + 9).stroke({ color: ICE.night, width: 14 });
-		g.circle(0, 0, R + 16).stroke({ color: ICE.ink, width: 3 });
-		for (let k = 0; k < 8; k++) {
-			const a = (k * Math.PI) / 4 + Math.PI / 8 - Math.PI / 2;
-			const bx = Math.cos(a) * (R + 14);
-			const by = Math.sin(a) * (R + 14);
-			const nx = -Math.sin(a) * 7;
-			const ny = Math.cos(a) * 7;
-			g.poly([bx + nx, by + ny, bx - nx, by - ny, Math.cos(a) * (R + 30), Math.sin(a) * (R + 30)])
-				.fill({ color: ICE.frost })
-				.stroke({ color: ICE.ink, width: 3, join: 'round' });
-		}
-	};
-	const drawStand = (g: import('pixi.js').Graphics) => {
-		g.ellipse(0, R + 38, R * 0.9, 10).fill({ color: ICE.ink, alpha: 0.25 });
-		g.rect(-7, R + 8, 14, 26).fill({ color: ICE.night }).stroke({ color: ICE.ink, width: 3 });
-		g.roundRect(-R * 0.55, R + 30, R * 1.1, 11, 5).fill({ color: ICE.paper }).stroke({ color: ICE.ink, width: 3 });
-	};
 
 	const spinTo = (index: number) =>
 		new Promise<void>((resolve) => {
@@ -122,52 +95,53 @@
 		<Sprite
 			key="prop_basin"
 			anchor={{ x: 0.5, y: 1 }}
-			x={cx + side * (R + 118)}
-			y={cy + 36}
+			x={cx + side * (HOLE + 78)}
+			y={cy + 30}
 			height={92}
 			width={96 * 1.05}
 		/>
 	{/each}
 
 	<Container x={cx} y={cy} scale={zoom.current} zIndex={60}>
-		<Graphics draw={drawStand} />
-		<Container {rotation}>
-			<Graphics draw={drawWheel} />
-			{#each segments as seg, i (i)}
-				<Container rotation={(i * Math.PI * 2) / segments.length}>
-					<Text
-						anchor={{ x: 0.5, y: 0.5 }}
-						y={-R * 0.7}
-						text={`x${seg}`}
-						style={{ fontFamily: FONT_UI, fontWeight: '800', fontSize: 11, fill: ICE.ink }}
-					/>
-				</Container>
-			{/each}
+			<Sprite key="wheel_stand" anchor={{ x: STAND.ax, y: STAND.ay }} width={STAND.w} height={STAND.h} />
+			<Container {rotation}>
+				<Sprite key="wheel_face" anchor={0.5} width={FACE_W} height={FACE_W} />
+				{#each segments as seg, i (i)}
+					<Container rotation={(i * Math.PI * 2) / segments.length}>
+						<Text
+							anchor={{ x: 0.5, y: 0.5 }}
+							y={-R * 0.68}
+							text={`x${seg}`}
+							style={{
+								fontFamily: FONT_UI,
+								fontWeight: '800',
+								fontSize: 9,
+								fill: 0xffffff,
+								stroke: { color: ICE.ink, width: 2.5 },
+							}}
+						/>
+					</Container>
+				{/each}
+			</Container>
+			<Sprite key="wheel_hub" anchor={0.5} width={HOLE * 0.5} height={HOLE * 0.5} />
+			<!-- fixed pointer: coral crystal, tip inside the face -->
+			<Sprite key="wheel_pointer" anchor={{ x: 0.5, y: 0.9 }} y={-HOLE + 4} width={HOLE * 0.36} height={HOLE * 0.54} />
 		</Container>
-		<Graphics draw={drawRim} />
-		<Graphics draw={(g) => drawSigil(g, 17)} />
-		<!-- fixed pointer -->
-		<Graphics
-			draw={(g) => {
-				g.poly([-10, -R - 24, 10, -R - 24, 0, -R + 2]).fill({ color: ICE.danger }).stroke({ color: ICE.ink, width: 3, join: 'round' });
-			}}
-		/>
-	</Container>
 
-	{#if landed}
-		<Text
-			x={cx}
-			y={layout.y + 205}
-			anchor={{ x: 0.5, y: 0.5 }}
-			text={`x${result}   ${bookEventAmountToCurrencyString(pre)} > ${bookEventAmountToCurrencyString(post)}`}
-			style={{
-				fontFamily: FONT_TITLE,
-				fontWeight: '400',
-				fontSize: 28,
-				fill: ICE.frost,
-				stroke: { color: ICE.ink, width: 6 },
-			}}
-			zIndex={61}
-		/>
-	{/if}
-</MainContainer>
+		{#if landed}
+			<Text
+				x={cx}
+				y={layout.y + 205}
+				anchor={{ x: 0.5, y: 0.5 }}
+				text={`x${result}   ${bookEventAmountToCurrencyString(pre)} > ${bookEventAmountToCurrencyString(post)}`}
+				style={{
+					fontFamily: FONT_TITLE,
+					fontWeight: '400',
+					fontSize: 28,
+					fill: ICE.frost,
+					stroke: { color: ICE.ink, width: 6 },
+				}}
+				zIndex={61}
+			/>
+		{/if}
+	</MainContainer>

@@ -49,3 +49,9 @@ Remaining art to generate: wheel parts, control bar + UI pieces, rite banner / c
 fx_snow_a/b/c (three snowflake particles), fx_sparkle (four-point star), prop_flag (small snowflake flag, used as ground dressing).
 All real alpha. Used by `components/Snowfall.svelte`: 26 gentle flakes + 7 twinkling sparkles in the base game, 64 faster, wind-blown flakes during the blizzard rite.
 The layer sits behind the board/props/UI (zIndex -0.5) so it never covers the control bar.
+
+## Wheel (batch 12)
+wheel_stand (static: ring, spikes, post, base), wheel_face (rotating, 8 wedges, centre hole), wheel_hub, wheel_pointer (coral crystal, the only coral in the game), fx_shard (crystal shard particle; its baked checkerboard was removed by cutting along the outline).
+Wired in `FrostWheel.svelte`. Geometry measured from the stand: opening centre (289,267), radius 134.5 in the 580x679 export; the face is sized to tuck under the rim.
+Face wedge colours are the art's own (cyan, pale, deep blue, violet); the numbers are drawn by the game in white with an ink outline so they read on every wedge.
+Unused so far: fx_shard.
