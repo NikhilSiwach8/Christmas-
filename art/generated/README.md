@@ -89,3 +89,8 @@ Several arrived with baked white/checkerboard backgrounds and were cut along the
 ## Icons (batch 19)
 ui_buy_bonus (snowflake key) is wired on the Buy Bonus button (icon + small "BUY BONUS" label; text only while the bonus is active). All four had real alpha.
 Exported but not wired: ui_avatar (smiling snowball mascot in a beanie - candidate for the bar's left slot / loader / favicon), ui_paytable (scroll), ui_info ("i" in a ring) - they belong to the menu / paytable screens, which still use the default light buttons.
+
+## Buy menu (batch 20)
+mn_card_frame (paper card), mn_aurora_lantern (Aurora Bet; its faint baked pattern was cleared), mn_card_blizzard, mn_card_whiteout, mn_slider (unused).
+Wired in the SDK's HTML buy menu: the card frame is applied by CSS in `Game.svelte` (`<svelte:head>`), the art through `betModeMeta.ts` (`assets.dialogImage`) and a small patch to `BonusCard/BonusCards.svelte` (now in `ui-theme.patch`).
+Also fixed: shared-UI buttons inherited the theme's panel alpha 0 and rendered see-through in the side menu; they are forced opaque now.

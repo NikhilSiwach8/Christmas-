@@ -314,7 +314,7 @@ diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/components/
  			{@render props.gameName()}
 diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/components/UiButton.svelte packages/components-ui-pixi/src/components/UiButton.svelte
 --- a/packages/components-ui-pixi/src/components/UiButton.svelte	2026-11-26 11:46:21.857467428 +0000
-+++ b/packages/components-ui-pixi/src/components/UiButton.svelte	2026-11-27 02:59:30.981403231 +0000
++++ b/packages/components-ui-pixi/src/components/UiButton.svelte	2026-11-27 06:28:14.700947238 +0000
 @@ -1,5 +1,6 @@
  <script lang="ts">
 -	import { Text } from 'pixi-svelte';
@@ -323,7 +323,7 @@ diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/components/
  	import { Button, type ButtonProps } from 'components-pixi';
  
  	import UiSprite from './UiSprite.svelte';
-@@ -27,25 +28,48 @@
+@@ -27,25 +28,49 @@
  
  <Button {...buttonProps}>
  	{#snippet children({ center, hovered, pressed })}
@@ -343,6 +343,7 @@ diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/components/
  			width={buttonProps.sizes.width}
  			height={buttonProps.sizes.height}
 -			backgroundColor={variant === 'dark' ? 0x000000 : 0xffffff}
++			backgroundAlpha={1}
 +			backgroundColor={variant === 'dark' ? uiTheme.buttonFill : uiTheme.buttonFillLight}
 +			borderColor={uiTheme.buttonBorder}
 +			borderWidth={uiTheme.buttonBorderWidth}
@@ -376,7 +377,7 @@ diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/components/
  		<Text
  			{...center}
  			anchor={0.5}
-@@ -54,12 +78,13 @@
+@@ -54,12 +79,13 @@
  				align: 'center',
  				wordWrap: true,
  				wordWrapWidth: 200,
@@ -527,3 +528,38 @@ diff -ruN '--exclude=node_modules' a/packages/components-ui-pixi/src/theme.svelt
 +});
 +
 +export const setUiTheme = (theme: Partial<typeof uiTheme>) => Object.assign(uiTheme, theme);
+diff -ruN '--exclude=node_modules' a/packages/components-ui-html/src/components/BonusCard.svelte packages/components-ui-html/src/components/BonusCard.svelte
+--- a/packages/components-ui-html/src/components/BonusCard.svelte	2026-11-26 11:46:21.856755445 +0000
++++ b/packages/components-ui-html/src/components/BonusCard.svelte	2026-11-27 06:23:43.309043029 +0000
+@@ -2,6 +2,7 @@
+ 	import type { Snippet } from 'svelte';
+ 
+ 	type Props = {
++		image?: Snippet;
+ 		title: Snippet;
+ 		description: Snippet;
+ 		price: Snippet;
+@@ -13,6 +14,7 @@
+ 
+ <div class="bonus-card-wrap">
+ 	<div class="info">
++		{@render props.image?.()}
+ 		{@render props.title()}
+ 		{@render props.description()}
+ 		{@render props.price()}
+diff -ruN '--exclude=node_modules' a/packages/components-ui-html/src/components/BonusCards.svelte packages/components-ui-html/src/components/BonusCards.svelte
+--- a/packages/components-ui-html/src/components/BonusCards.svelte	2026-11-26 11:46:21.856755445 +0000
++++ b/packages/components-ui-html/src/components/BonusCards.svelte	2026-11-27 06:23:43.309347678 +0000
+@@ -21,6 +21,12 @@
+ {#each props.list as betModeData}
+ 	{#if betModeData.type !== 'default'}
+ 		<BonusCard>
++			{#snippet image()}
++				{#if betModeData.assets?.dialogImage}
++					<img class="bonus-art" src={betModeData.assets.dialogImage} alt={betModeData.text.title} draggable="false" />
++				{/if}
++			{/snippet}
++
+ 			{#snippet title()}
+ 				<div class="title">
+ 					{betModeData.text.title}

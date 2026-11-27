@@ -51,6 +51,17 @@
 	});
 </script>
 
+<svelte:head>
+	{@html `<style>
+/* Frozen Rite paper buy cards (the SDK's .bonus-card-wrap keeps its class next to the scoped hash) */
+.bonus-card-wrap { background: url('/art/menu/card_frame.webp') center / 100% 100% no-repeat !important; border-radius: 0 !important; color: #14141c; padding: 1.1rem 0.9rem 0.8rem !important; min-width: 190px !important; max-width: 215px !important; min-height: 300px; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+.bonus-card-wrap .bonus-art { width: 100%; height: 8.6rem; object-fit: contain; display: block; margin: 1rem 0 0.2rem; pointer-events: none; }
+.bonus-card-wrap .description { padding: 0 0.7rem; min-height: 3rem !important; }
+.bonus-card-wrap .title { font-family: 'Uncial Antiqua', serif; font-size: 1.15rem !important; color: #14141c; }
+.bonus-card-wrap .description, .bonus-card-wrap .price { font-family: 'Nunito Sans', sans-serif; font-weight: 800; color: #14141c; }
+</style>`}
+</svelte:head>
+
 <App>
 	<EnableSound />
 	<EnableHotkey />

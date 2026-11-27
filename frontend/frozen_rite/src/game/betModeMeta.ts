@@ -21,7 +21,7 @@ export const FROZEN_RITE_BET_MODE_META: BetModeMeta = {
 		parent: '',
 		children: '',
 		maxWin: 10000,
-		assets: noAssets,
+		assets: { ...noAssets, dialogImage: '/art/menu/aurora.webp' },
 		text: {
 			title: 'AURORA BET',
 			dialog:
@@ -40,7 +40,7 @@ export const FROZEN_RITE_BET_MODE_META: BetModeMeta = {
 		parent: '',
 		children: '',
 		maxWin: 10000,
-		assets: noAssets,
+		assets: { ...noAssets, dialogImage: '/art/menu/blizzard.webp' },
 		text: {
 			title: 'BLIZZARD RITE',
 			dialog:
@@ -58,7 +58,7 @@ export const FROZEN_RITE_BET_MODE_META: BetModeMeta = {
 		parent: '',
 		children: '',
 		maxWin: 10000,
-		assets: noAssets,
+		assets: { ...noAssets, dialogImage: '/art/menu/whiteout.webp' },
 		text: {
 			title: 'WHITEOUT RITE',
 			dialog:
