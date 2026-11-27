@@ -55,3 +55,7 @@ wheel_stand (static: ring, spikes, post, base), wheel_face (rotating, 8 wedges, 
 Wired in `FrostWheel.svelte`. Geometry measured from the stand: opening centre (289,267), radius 134.5 in the 580x679 export; the face is sized to tuck under the rim.
 Face wedge colours are the art's own (cyan, pale, deep blue, violet); the numbers are drawn by the game in white with an ink outline so they read on every wedge.
 Unused so far: fx_shard.
+
+## Wheel extras (batch 13)
+wheel_win_flare (starburst behind the wheel when it lands), wheel_tag (paper tag plate behind the result line), wheel_tail (frost serpent beside the wheel post, gentle sway, hidden while the wheel is lifted).
+All real alpha; wired in `FrostWheel.svelte`. The wheel set from the prompt pack is now complete.

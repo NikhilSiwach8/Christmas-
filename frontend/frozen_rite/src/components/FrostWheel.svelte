@@ -9,6 +9,7 @@
 </script>
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { Tween } from 'svelte/motion';
 	import { Container, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
@@ -36,6 +37,14 @@
 	let result = $state(1);
 	let pre = $state(0);
 	let post = $state(0);
+	let sway = $state(0);
+	onMount(() => {
+		let raf = 0;
+		const tick = (t: number) => { sway = t / 900; raf = requestAnimationFrame(tick); };
+		raf = requestAnimationFrame(tick);
+		return () => cancelAnimationFrame(raf);
+	});
+	let flare = $state(0); // 0..1 burst progress after landing
 	const zoom = new Tween(1, { duration: 700 });
 	const lift = new Tween(0, { duration: 700 }); // 0 = mounted above the board, 1 = centred over the board
 
@@ -90,6 +99,9 @@
 </FadeContainer>
 
 <MainContainer>
+	<!-- frost serpent coiled beside the wheel post -->
+	<Sprite key="wheel_tail" anchor={{ x: 0.5, y: 1 }} x={cx - HOLE - 30} y={cyRest + BELOW + 1} height={96} width={96 * 0.49} alpha={spinning ? 0 : 1} rotation={Math.sin(sway) * 0.03} />
+
 	<!-- stone basins with frost flames, either side of the wheel -->
 	{#each [-1, 1] as side (side)}
 		<Sprite
@@ -102,7 +114,10 @@
 		/>
 	{/each}
 
-	<Container x={cx} y={cy} scale={zoom.current} zIndex={60}>
+	{#if landed}
+			<Sprite key="wheel_flare" anchor={0.5} x={cx} y={cy} width={330} height={330} rotation={sway * 0.4} zIndex={59} />
+		{/if}
+		<Container x={cx} y={cy} scale={zoom.current} zIndex={60}>
 			<Sprite key="wheel_stand" anchor={{ x: STAND.ax, y: STAND.ay }} width={STAND.w} height={STAND.h} />
 			<Container {rotation}>
 				<Sprite key="wheel_face" anchor={0.5} width={FACE_W} height={FACE_W} />
@@ -129,17 +144,17 @@
 		</Container>
 
 		{#if landed}
+			<Sprite key="wheel_tag" anchor={0.5} x={cx} y={layout.y + 205} width={470} height={470 * 160 / 307 * 0.62} zIndex={60} />
 			<Text
-				x={cx}
+				x={cx + 22}
 				y={layout.y + 205}
 				anchor={{ x: 0.5, y: 0.5 }}
 				text={`x${result}   ${bookEventAmountToCurrencyString(pre)} > ${bookEventAmountToCurrencyString(post)}`}
 				style={{
 					fontFamily: FONT_TITLE,
 					fontWeight: '400',
-					fontSize: 28,
-					fill: ICE.frost,
-					stroke: { color: ICE.ink, width: 6 },
+					fontSize: 19,
+					fill: ICE.ink,
 				}}
 				zIndex={61}
 			/>
