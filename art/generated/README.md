@@ -85,3 +85,7 @@ Still text labels: AUTO SPIN, TURBO, BUY BONUS (no icons generated for them).
 ## Icons (batch 18)
 ui_icon_turbo and ui_icon_auto are wired (Turbo / Auto buttons). ui_icon_settings, ui_icon_sound_on, ui_icon_sound_off are exported but not wired: the menu's settings button is a *light* (white) button, where a white icon with a dark outline would vanish, and the sound switch uses a different component.
 Several arrived with baked white/checkerboard backgrounds and were cut along their black outlines (same method as the menu icon).
+
+## Icons (batch 19)
+ui_buy_bonus (snowflake key) is wired on the Buy Bonus button (icon + small "BUY BONUS" label; text only while the bonus is active). All four had real alpha.
+Exported but not wired: ui_avatar (smiling snowball mascot in a beanie - candidate for the bar's left slot / loader / favicon), ui_paytable (scroll), ui_info ("i" in a ring) - they belong to the menu / paytable screens, which still use the default light buttons.

@@ -36,6 +36,7 @@ export const applyIceUiTheme = () =>
 			increase: { key: 'ui_icon_plus', w: 0.5, h: 0.5 },
 			decrease: { key: 'ui_icon_minus', w: 0.55, h: 0.18 },
 			menu: { key: 'ui_icon_menu', w: 0.5, h: 0.5 },
+			buyBonus: { key: 'ui_icon_buy_bonus', w: 0.55, h: 0.55 },
 			turbo: { key: 'ui_icon_turbo', w: 0.4, h: 0.5 },
 			autoSpin: { key: 'ui_icon_auto', w: 0.5, h: 0.5 },
 		},

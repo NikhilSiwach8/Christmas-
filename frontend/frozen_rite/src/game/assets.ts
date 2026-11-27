@@ -1,5 +1,21 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ui_icon_buy_bonus: {
+		type: 'sprite',
+		src: '/art/ui/icon_buy_bonus.webp',
+	},
+	ui_icon_paytable: {
+		type: 'sprite',
+		src: '/art/ui/icon_paytable.webp',
+	},
+	ui_icon_info: {
+		type: 'sprite',
+		src: '/art/ui/icon_info.webp',
+	},
+	ui_icon_avatar: {
+		type: 'sprite',
+		src: '/art/ui/icon_avatar.webp',
+	},
 	ui_icon_settings: {
 		type: 'sprite',
 		src: '/art/ui/icon_settings.webp',
