@@ -18,3 +18,11 @@ Features: Aurora random multiplier (base), two free-spin rites with progressive 
 Custom book events: `riteAwaken`, `auroraMult`, `frostWheel` (plus SDK standard events and `updateGlobalMult`).
 Reproduce: `FR_SIMS=100000 tools/dev_run.sh <math-sdk dir>` (needs a math-sdk clone with its venv). Reports in `reports/`.
 Note: natural free-spin triggers pick a random rite; players choose a rite only via the buy modes (RGS books are pre-drawn).
+
+## Mechanics v2 (reference-style structure) - 100k sims/mode
+Coloured scatters (red/blue/purple), Symbol Removal (scatter pair converts one symbol into another; base = one spin, bonus = persistent, +2 spins),
+four rites (Blizzard x2/LV1, Whiteout x5/LV2, Glacier x10/LV3 higher-wins, Absolute Zero x20/LV3 lows converted), in-bonus wheel (multipliers, extra sacrifice,
+Chosen Offering = random wheel upgrade or symbol promotion, Aurora Surge, Frost Moon, Frost Frenzy), no wilds, 40,000x cap.
+Modes: base, bonus_bet (3x), buy_blizzard (100x), buy_whiteout (300x), buy_mystery (500x), buy_glacier (1500x).
+Verified from lookup tables: RTP 96.70% in all six modes. SDK risk checks: 5 of 6 pass - buy_mystery fails "10,000x+ frequency" (1.38% vs 1% limit), so Studio would lower its bet limits.
+Numbers not in public sources (wheel odds, reel frequencies) are our own tuning.

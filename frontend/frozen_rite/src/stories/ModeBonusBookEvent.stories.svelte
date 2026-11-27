@@ -190,3 +190,16 @@
 	})}
 	{template}
 />
+
+<Story
+	name="symbolSacrifice"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: events.reveal,
+		action: async (data) => {
+			await playBookEvent(data, { bookEvents: [] });
+			await playBookEvent(events.symbolSacrifice, { bookEvents: [] });
+		},
+	})}
+	{template}
+/>
