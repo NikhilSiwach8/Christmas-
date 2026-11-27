@@ -1,5 +1,17 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	ui_icon_menu: {
+		type: 'sprite',
+		src: '/art/ui/icon_menu.webp',
+	},
+	ui_icon_minus: {
+		type: 'sprite',
+		src: '/art/ui/icon_minus.webp',
+	},
+	ui_icon_plus: {
+		type: 'sprite',
+		src: '/art/ui/icon_plus.webp',
+	},
 	ui_spin_stop: {
 		type: 'sprite',
 		src: '/art/ui/spin_stop.webp',

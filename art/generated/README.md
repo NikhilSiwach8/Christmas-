@@ -76,3 +76,8 @@ Spin button art is applied through `uiTheme.spinSprite` (see ui-theme.patch).
 ui_spin_stop (square icon) and ui_spin_disabled (grey stone) are now the real stop/disabled spin states (the derived ones are replaced).
 ui_round / ui_round_hover / ui_round_down: ornate medallion buttons. Supported via `uiTheme.roundSprite` but turned OFF: at the bar's small button size (~70 units) they overlap
 and bury the AUTO / TURBO / MENU labels. Good candidates for larger menu buttons instead.
+
+## Icons (batch 17)
+ui_icon_plus, ui_icon_minus, ui_icon_menu (white pill-style icons with ink outline; the menu icon's baked checkerboard was removed by cutting along its outlines) - wired via `uiTheme.icons` for the + / - / MENU buttons.
+ui_round_off and ui_round_active: grey disabled and glowing active versions of the ornate round button - exported but unused (the ornate round art is switched off at bar size).
+Still text labels: AUTO SPIN, TURBO, BUY BONUS (no icons generated for them).

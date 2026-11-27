@@ -32,6 +32,11 @@ export const applyIceUiTheme = () =>
 		accent: ICE.glacier,
 		spinFill: ICE.deep,
 		spinSprite: 'ui_spin',
+		icons: {
+			increase: { key: 'ui_icon_plus', w: 0.5, h: 0.5 },
+			decrease: { key: 'ui_icon_minus', w: 0.55, h: 0.18 },
+			menu: { key: 'ui_icon_menu', w: 0.5, h: 0.5 },
+		},
 		roundSprite: '', // ornate round art exists (ui_round*) but is too detailed at button size; set to 'ui_round' to try it
 	});
 
