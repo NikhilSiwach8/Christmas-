@@ -119,6 +119,9 @@ export const SYMBOL_INFO_MAP = {
 	W: allStates('sym_w', 1.0, 1.33, sprite('sym_w_exploded', 1.0, 1.33)),
 	// scatter is drawn oversized so it pops out of its cell
 	S: allStates('sym_s', 1.15, 1.15),
+	// blue and purple scatters (colour variants of the Frozen Codex; they pick the bonus rite)
+	SB: allStates('sym_sb', 1.15, 1.15),
+	SP: allStates('sym_sp', 1.15, 1.15),
 } as const;
 
 export const SCATTER_LAND_SOUND_MAP = {

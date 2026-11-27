@@ -93,11 +93,13 @@ type BookEventUpdateGlobalMult = {
 type BookEventRiteAwaken = {
 	index: number;
 	type: 'riteAwaken';
-	rite: 'blizzard' | 'whiteout';
+	rite: 'blizzard' | 'whiteout' | 'glacier' | 'absolute_zero';
 	purchased: boolean;
 	startMult: number;
-	step: number;
-	maxMult: number;
+	wheelLevel: number;
+	startSpins: number;
+	higherWins: boolean;
+	convertLows: boolean;
 };
 
 type BookEventAuroraMult = {
@@ -106,13 +108,28 @@ type BookEventAuroraMult = {
 	mult: number;
 };
 
+// Symbol Removal: every `loser` symbol turns into `winner`
+type BookEventSymbolSacrifice = {
+	index: number;
+	type: 'symbolSacrifice';
+	source: 'scatter' | 'wheel' | 'hollow';
+	loser: string;
+	winner: string;
+	positions: Position[];
+	persistent: boolean;
+	extraSpins: number;
+};
+
 type BookEventFrostWheel = {
 	index: number;
 	type: 'frostWheel';
-	segments: number[];
-	result: number;
-	preWheelAmount: number;
-	postWheelAmount: number;
+	level: number;
+	kind: 'mult' | 'extra_sacrifice' | 'chosen_offering' | 'dark_surge' | 'blood_moon' | 'frenzy';
+	value: number;
+	labels: { kind: string; value: number }[];
+	resultIndex: number;
+	newLevel: number;
+	multAfter: number;
 };
 
 // customised
@@ -138,6 +155,7 @@ export type BookEvent =
 	| BookEventRiteAwaken
 	| BookEventAuroraMult
 	| BookEventFrostWheel
+	| BookEventSymbolSacrifice
 	// customised
 	| BookEventCreateBonusSnapshot;
 

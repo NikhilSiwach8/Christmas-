@@ -1,38 +1,28 @@
-"""Custom Frozen Rite events (frontend renders these in order, alongside the SDK standard events)."""
+"""Custom Frozen Rite events (rendered in order by the frontend, alongside SDK standard events)."""
 from src.events.events import *  # noqa: F401,F403
 
 
-def rite_awaken_event(gamestate, rite: str, spins_table: dict, purchased: bool) -> None:
-    """Announce which free-spin rite was awakened (natural trigger: random; buy modes: the one purchased)."""
-    gamestate.book.add_event(
-        {
-            "index": len(gamestate.book.events),
-            "type": "riteAwaken",
-            "rite": rite,
-            "purchased": purchased,
-            "startMult": int(gamestate.config.rites[rite]["start_mult"]),
-            "step": int(gamestate.config.rites[rite]["step"]),
-            "maxMult": int(gamestate.config.rites[rite]["max_mult"]),
-        }
-    )
+def rite_awaken_event(gs, rite, purchased):
+    r = gs.config.rites[rite]
+    gs.book.add_event({"index": len(gs.book.events), "type": "riteAwaken", "rite": rite, "purchased": purchased,
+                       "startMult": int(r["start_mult"]), "wheelLevel": int(r["wheel_level"]),
+                       "startSpins": int(r["start_spins"]), "higherWins": bool(r["higher_wins"]),
+                       "convertLows": bool(r["convert_lows"])})
 
 
-def aurora_mult_event(gamestate, mult: int) -> None:
-    """Base-game random multiplier applied to a winning spin."""
-    gamestate.book.add_event(
-        {"index": len(gamestate.book.events), "type": "auroraMult", "mult": int(mult)}
-    )
+def aurora_mult_event(gs, mult):
+    gs.book.add_event({"index": len(gs.book.events), "type": "auroraMult", "mult": int(mult)})
 
 
-def wheel_spin_event(gamestate, result: int, pre_win: float, post_win: float) -> None:
-    """Frost Wheel spin at the end of the free spins. Amounts in cents (x100 of bet multiple)."""
-    gamestate.book.add_event(
-        {
-            "index": len(gamestate.book.events),
-            "type": "frostWheel",
-            "segments": [int(s) for s in gamestate.config.wheel_segments],
-            "result": int(result),
-            "preWheelAmount": int(round(pre_win * 100)),
-            "postWheelAmount": int(round(post_win * 100)),
-        }
-    )
+def symbol_sacrifice_event(gs, source, loser, winner, positions, persistent, extra_spins):
+    """Every `loser` symbol on the board transforms into `winner`. positions are padded-board cells that change."""
+    gs.book.add_event({"index": len(gs.book.events), "type": "symbolSacrifice", "source": source,
+                       "loser": loser, "winner": winner,
+                       "positions": [{"reel": int(p["reel"]), "row": int(p["row"]) + 1} for p in positions],
+                       "persistent": bool(persistent), "extraSpins": int(extra_spins)})
+
+
+def frost_wheel_event(gs, level, kind, value, labels, result_index, new_level, mult_after):
+    gs.book.add_event({"index": len(gs.book.events), "type": "frostWheel", "level": int(level), "kind": kind,
+                       "value": int(value), "labels": labels, "resultIndex": int(result_index),
+                       "newLevel": int(new_level), "multAfter": int(mult_after)})

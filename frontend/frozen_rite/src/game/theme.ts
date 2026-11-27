@@ -13,11 +13,13 @@ export const ICE = {
 	danger: 0xff5a6e, // wheel pointer only
 };
 
-export type RiteName = 'blizzard' | 'whiteout';
+export type RiteName = 'blizzard' | 'whiteout' | 'glacier' | 'absolute_zero';
 
-export const RITE_INFO: Record<RiteName, { title: string; subtitle: string; color: number }> = {
-	blizzard: { title: 'BLIZZARD RITE', subtitle: 'Long storm - multiplier climbs +1 per win', color: ICE.glacier },
-	whiteout: { title: 'WHITEOUT RITE', subtitle: 'Short, ferocious - multiplier climbs +2 per win', color: ICE.aurora },
+export const RITE_INFO: Record<RiteName, { title: string; subtitle: string; color: number; emblem: 'blizzard' | 'whiteout'; bg: 'blizzard' | 'whiteout' }> = {
+	blizzard: { title: 'BLIZZARD RITE', subtitle: '3 scatters - x2 multiplier - wheel level 1', color: ICE.glacier, emblem: 'blizzard', bg: 'blizzard' },
+	whiteout: { title: 'WHITEOUT RITE', subtitle: '2 red + blue scatter - x5 - wheel level 2', color: ICE.aurora, emblem: 'whiteout', bg: 'whiteout' },
+	glacier: { title: 'GLACIER RITE', subtitle: '2 red + purple scatter - x10 - the higher symbol always wins', color: ICE.deep, emblem: 'blizzard', bg: 'blizzard' },
+	absolute_zero: { title: 'ABSOLUTE ZERO', subtitle: 'x20 - every low symbol is converted', color: ICE.aurora, emblem: 'whiteout', bg: 'whiteout' },
 };
 
 // Frost Wheel segment colours cycle through the palette

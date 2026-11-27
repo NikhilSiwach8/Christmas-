@@ -144,6 +144,18 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			purchased: bookEvent.purchased,
 		});
 	},
+	symbolSacrifice: async (bookEvent: BookEventOfType<'symbolSacrifice'>) => {
+		if (bookEvent.positions.length === 0) return; // 'hollow' conversions are already baked into every later board
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_explode' });
+		await eventEmitter.broadcastAsync({
+			type: 'symbolConvert',
+			positions: bookEvent.positions,
+			winner: bookEvent.winner,
+		});
+		if (bookEvent.extraSpins > 0) {
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_fs_respins' });
+		}
+	},
 	auroraMult: async (bookEvent: BookEventOfType<'auroraMult'>) => {
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_landing' });
 		await eventEmitter.broadcastAsync({
@@ -163,10 +175,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	frostWheel: async (bookEvent: BookEventOfType<'frostWheel'>) => {
 		await eventEmitter.broadcastAsync({
 			type: 'frostWheelSpin',
-			segments: bookEvent.segments,
-			result: bookEvent.result,
-			preWheelAmount: bookEvent.preWheelAmount,
-			postWheelAmount: bookEvent.postWheelAmount,
+			level: bookEvent.level,
+			kind: bookEvent.kind,
+			value: bookEvent.value,
+			newLevel: bookEvent.newLevel,
+			multAfter: bookEvent.multAfter,
 		});
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {

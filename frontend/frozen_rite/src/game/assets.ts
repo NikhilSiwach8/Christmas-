@@ -1,5 +1,13 @@
 export default {
 	// Frozen Rite generated art (static/art)
+	sym_sb: {
+		type: 'sprite',
+		src: '/art/symbols/sb.webp',
+	},
+	sym_sp: {
+		type: 'sprite',
+		src: '/art/symbols/sp.webp',
+	},
 	ui_icon_buy_bonus: {
 		type: 'sprite',
 		src: '/art/ui/icon_buy_bonus.webp',

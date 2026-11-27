@@ -4,10 +4,11 @@
 
 	import { getContext } from '../game/context';
 	import { seeded } from '../game/art';
+	import { RITE_INFO } from '../game/theme';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
-	const blizzard = $derived(context.stateGame.gameType === 'freegame' && context.stateGame.rite === 'blizzard');
+	const blizzard = $derived(context.stateGame.gameType === 'freegame' && RITE_INFO[context.stateGame.rite].bg === 'blizzard');
 
 	type Flake = { x: number; y: number; size: number; speed: number; drift: number; phase: number; spin: number; kind: string; alpha: number; rot: number };
 	const KINDS = ['fx_snow_a', 'fx_snow_b', 'fx_snow_c'];

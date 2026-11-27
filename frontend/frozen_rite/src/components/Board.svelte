@@ -5,6 +5,7 @@
 		| { type: 'boardSettle'; board: RawSymbol[][] }
 		| { type: 'boardShow' }
 		| { type: 'boardHide' }
+		| { type: 'symbolConvert'; positions: Position[]; winner: string }
 		| {
 				type: 'boardWithAnimateSymbols';
 				symbolPositions: Position[];
@@ -12,7 +13,7 @@
 </script>
 
 <script lang="ts">
-	import { waitForResolve } from 'utils-shared/wait';
+	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { BoardContext } from 'components-shared';
 
 	import { getContext } from '../game/context';
@@ -29,6 +30,22 @@
 		boardSettle: ({ board }) => context.stateGameDerived.enhancedBoard.settle(board),
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),
+		symbolConvert: async ({ positions, winner }) => {
+			// Symbol Removal: flash the losing symbols, then they become the winner (rawSymbol swap + landing squash)
+			for (const pos of positions) {
+				const rs = context.stateGame.board[pos.reel]?.reelState.symbols[pos.row];
+				if (rs) rs.symbolState = 'win';
+			}
+			await waitForTimeout(450);
+			for (const pos of positions) {
+				const rs = context.stateGame.board[pos.reel]?.reelState.symbols[pos.row];
+				if (rs) {
+					rs.rawSymbol = { name: winner } as typeof rs.rawSymbol;
+					rs.symbolState = 'land';
+				}
+			}
+			await waitForTimeout(500);
+		},
 		boardWithAnimateSymbols: async ({ symbolPositions }) => {
 			const getPromises = () =>
 				symbolPositions.map(async (position) => {

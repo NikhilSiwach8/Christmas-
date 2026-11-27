@@ -22,6 +22,8 @@ if __name__ == "__main__":
         "bonus_bet": int(os.environ.get("FR_SIMS", 100000)),
         "buy_blizzard": int(os.environ.get("FR_SIMS", 100000)),
         "buy_whiteout": int(os.environ.get("FR_SIMS", 100000)),
+        "buy_mystery": int(os.environ.get("FR_SIMS", 100000)),
+        "buy_glacier": int(os.environ.get("FR_SIMS", 100000)),
     }
 
     run_conditions = {
@@ -30,7 +32,7 @@ if __name__ == "__main__":
         "run_analysis": os.environ.get("FR_OPT", "1") == "1",
         "run_format_checks": compression,
     }
-    target_modes = ["base", "bonus_bet", "buy_blizzard", "buy_whiteout"]
+    target_modes = ["base", "bonus_bet", "buy_blizzard", "buy_whiteout", "buy_mystery", "buy_glacier"]
 
     config = GameConfig()
     gamestate = GameState(config)

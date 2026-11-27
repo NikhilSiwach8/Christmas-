@@ -42,7 +42,7 @@
 <MainContainer>
 	<FadeContainer {show} x={layout.x} y={layout.y} zIndex={50}>
 		<Sprite
-			key={rite === 'blizzard' ? 'ft_emblem_blizzard' : 'ft_emblem_whiteout'}
+			key={info.emblem === 'blizzard' ? 'ft_emblem_blizzard' : 'ft_emblem_whiteout'}
 			anchor={0.5}
 			y={-height * 0.5 - 62}
 			width={140}
@@ -54,7 +54,7 @@
 				anchor={{ x: 0.5, y: 0.5 }}
 				y={-height * 0.1}
 				text={info.title}
-				style={{ fontFamily: FONT_TITLE, fontWeight: '400', fontSize: 34, fill: rite === 'blizzard' ? ICE.deep : 0x5a3fc0, stroke: { color: ICE.paper, width: 3 } }}
+				style={{ fontFamily: FONT_TITLE, fontWeight: '400', fontSize: 34, fill: info.emblem === 'blizzard' ? ICE.deep : 0x5a3fc0, stroke: { color: ICE.paper, width: 3 } }}
 			/>
 			<Text
 				anchor={{ x: 0.5, y: 0.5 }}

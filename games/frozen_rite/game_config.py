@@ -5,11 +5,11 @@ from src.config.betmode import BetMode
 
 
 class GameConfig(Config):
-    """Frozen Rite: 5x4 ways slot with two free-spin rites, a Frost Wheel and Aurora random multipliers.
+    """Frozen Rite: 5x4 ways slot with coloured scatters, Symbol Removal (sacrifice), four bonus rites and an in-bonus wheel.
 
-    Symbol ids (frontend maps these to ice-themed art):
-      H1 Frost Priestess, H2 Ice Wolf, H3 Glacier Golem, H4 Frozen Crown, H5 Rune Idol,
-      L1..L4 crystal gems, W = Aurora Wild, S = Frozen Codex (scatter).
+    Feature structure follows the public description of the reference game; the numbers marked TUNED are our own.
+    Symbols: H1 Frost Witch, H2 Snow Owl, H3 Yeti, H4 Snow Sentinel, H5 Frost Fox, L1..L4 card ranks A K Q J.
+    Scatters: S = red Frozen Codex, SB = blue, SP = purple (colour tints of the same book art).
     """
 
     _instance = None
@@ -24,64 +24,71 @@ class GameConfig(Config):
         self.game_id = "frozen_rite"
         self.provider_number = 0
         self.working_name = "Frozen Rite"
-        self.wincap = 10000
+        self.wincap = 40000
         self.win_type = "ways"
         self.rtp = 0.967
         self.construct_paths()
 
-        # Game Dimensions: 5 reels x 4 rows = 1024 ways
         self.num_reels = 5
-        self.num_rows = [4] * self.num_reels
+        self.num_rows = [4] * self.num_reels  # 1,024 ways
 
-        # All payouts must be multiples of 0.1x (Stake format rule), so the table lives on a 0.1 grid.
+        # All payouts must be multiples of 0.1x (Stake format rule). TUNED.
         self.paytable = {
-            (5, "H1"): 3.0, (4, "H1"): 0.9, (3, "H1"): 0.3,
-            (5, "H2"): 1.8, (4, "H2"): 0.6, (3, "H2"): 0.2,
-            (5, "H3"): 1.2, (4, "H3"): 0.5, (3, "H3"): 0.2,
-            (5, "H4"): 0.8, (4, "H4"): 0.3, (3, "H4"): 0.1,
-            (5, "H5"): 0.6, (4, "H5"): 0.2, (3, "H5"): 0.1,
+            (5, "H1"): 8.4, (4, "H1"): 2.5, (3, "H1"): 0.8,
+            (5, "H2"): 5.0, (4, "H2"): 1.7, (3, "H2"): 0.6,
+            (5, "H3"): 3.4, (4, "H3"): 1.4, (3, "H3"): 0.6,
+            (5, "H4"): 2.2, (4, "H4"): 0.8, (3, "H4"): 0.3,
+            (5, "H5"): 1.7, (4, "H5"): 0.6, (3, "H5"): 0.3,
             (5, "L1"): 0.4, (4, "L1"): 0.2, (3, "L1"): 0.1,
             (5, "L2"): 0.3, (4, "L2"): 0.1, (3, "L2"): 0.1,
             (5, "L3"): 0.2, (4, "L3"): 0.1, (3, "L3"): 0.1,
             (5, "L4"): 0.2, (4, "L4"): 0.1, (3, "L4"): 0.1,
         }
+        # rank of each regular symbol by pay (index 0 = best); used by "higher symbol wins" rites
+        self.symbol_rank = ["H1", "H2", "H3", "H4", "H5", "L1", "L2", "L3", "L4"]
+        self.high_symbols = ["H1", "H2", "H3", "H4", "H5"]
+        self.low_symbols = ["L1", "L2", "L3", "L4"]
 
         self.include_padding = True
-        # Wild "W" has no per-symbol multiplier here: multipliers are global (random / progressive / wheel).
-        self.special_symbols = {"wild": ["W"], "scatter": ["S"], "multiplier": []}
-
-        # Scatter counts -> spins. Per-rite tables below override these at runtime.
+        # No wilds in this game. Scatter colours: red S, blue SB, purple SP (all count as scatters).
+        self.special_symbols = {"wild": [], "scatter": ["S", "SB", "SP"], "multiplier": []}
         self.freespin_triggers = {
-            self.basegame_type: {3: 10, 4: 13, 5: 16},
-            self.freegame_type: {2: 3, 3: 5, 4: 7, 5: 9},
+            self.basegame_type: {3: 5, 4: 5, 5: 5},
+            self.freegame_type: {2: 2, 3: 2, 4: 2, 5: 2},
         }
         self.anticipation_triggers = {self.basegame_type: 2, self.freegame_type: 1}
 
-        # Free-spin rites. "Blizzard": long and steady. "Whiteout": short, high starting multiplier, big steps.
+        # The four bonus rites. Trigger: blizzard = 3 red; whiteout = 2 red + 1 blue; glacier = 2 red + 1 purple;
+        # absolute_zero = mystery buy only. All start with 5 spins; every sacrifice adds +2.
         self.rites = {
-            "blizzard": {
-                "spins": {3: 10, 4: 13, 5: 16},
-                "retrigger": {2: 3, 3: 5, 4: 7, 5: 9},
-                "start_mult": 1,
-                "step": 1,
-                "max_mult": 20,
-            },
-            "whiteout": {
-                "spins": {3: 6, 4: 8, 5: 10},
-                "retrigger": {2: 2, 3: 3, 4: 4, 5: 5},
-                "start_mult": 2,
-                "step": 2,
-                "max_mult": 30,
-            },
+            "blizzard": {"start_spins": 5, "start_mult": 2, "wheel_level": 1, "higher_wins": False, "convert_lows": False,
+                         "scatters": ["S", "S", "S"]},
+            "whiteout": {"start_spins": 5, "start_mult": 5, "wheel_level": 2, "higher_wins": False, "convert_lows": False,
+                         "scatters": ["S", "S", "SB"]},
+            "glacier": {"start_spins": 5, "start_mult": 10, "wheel_level": 3, "higher_wins": True, "convert_lows": False,
+                        "scatters": ["S", "S", "SP"]},
+            "absolute_zero": {"start_spins": 5, "start_mult": 20, "wheel_level": 3, "higher_wins": True, "convert_lows": True,
+                              "scatters": ["S", "SB", "SP"]},
         }
+        self.max_free_spins = 60
+        self.sacrifice_extra_spins = 2
+        self.wheel_chance = 0.55  # TUNED: probability that a sacrifice in a bonus also spins the wheel
 
-        # Frost Wheel (spins once at the end of the free spins and multiplies the whole feature win).
-        self.wheel_segments = [1, 2, 3, 5, 10, 25, 50, 100]
-        self.wheel_weights = {1: 40, 2: 28, 3: 15, 5: 9, 10: 5, 25: 2, 50: 0.7, 100: 0.3}
-        # Aurora random multiplier on winning base-game spins (1 = none).
+        # Wheel tables per level (1..5). Entry: (kind, value, weight). TUNED.
+        # kinds: mult (+value to the global multiplier), extra_sacrifice, chosen_offering, dark_surge, blood_moon (wheel level +1), frenzy (+value mult)
+        def table(level):
+            k = level - 1
+            return [
+                ("mult", 1, 30 - 4 * k), ("mult", 2, 24 - 2 * k), ("mult", 3, 14 + 1 * k), ("mult", 5, 7 + 2 * k),
+                ("mult", 10, 2 + 1.5 * k), ("mult", 25, 0.3 + 0.5 * k),
+                ("extra_sacrifice", 0, 7), ("chosen_offering", 0, 4 + k), ("dark_surge", 0, 6),
+                ("blood_moon", 0, 6 if level < 5 else 0), ("frenzy", 20, 1 + 0.6 * k),
+            ]
+        self.wheel_tables = {lvl: table(lvl) for lvl in range(1, 6)}
+        # Aurora-style random multiplier on winning base spins (the listed "random multiplier"). TUNED.
         self.base_mult_weights = {1: 900, 2: 50, 3: 25, 5: 15, 10: 7, 25: 3}
 
-        reels = {"BR0": "BR0.csv", "FR0": "FR0.csv", "FRWCAP": "FRWCAP.csv"}
+        reels = {"BR0": "BR0.csv", "FR0": "FR0.csv", "FRS": "FRS.csv", "FRWCAP": "FRWCAP.csv"}
         self.reels = {}
         for r, f in reels.items():
             self.reels[r] = self.read_reels_csv(os.path.join(self.reels_path, f))
@@ -90,116 +97,37 @@ class GameConfig(Config):
         base_reels = {self.basegame_type: {"BR0": 1}}
         free_reels = {self.freegame_type: {"FR0": 1}}
         cap_reels = {self.basegame_type: {"BR0": 1}, self.freegame_type: {"FR0": 1, "FRWCAP": 5}}
-        rites_mix = {"blizzard": 65, "whiteout": 35}
-        cap_wheel = {25: 2, 50: 3, 100: 4}
+        triggers = {3: 100, 4: 20, 5: 5}
+        natural_rites = {"blizzard": 60, "whiteout": 28, "glacier": 12}
 
-        def natural_distributions(trigger_quota):
-            """Distributions shared by base and bonus_bet (bonus_bet triggers features more often)."""
-            return [
-                Distribution(
-                    criteria="wincap",
-                    quota=0.001,
-                    win_criteria=cap,
-                    conditions={
-                        "reel_weights": cap_reels,
-                        "force_wincap": True,
-                        "force_freegame": True,
-                        "scatter_triggers": {3: 100, 4: 20, 5: 5},
-                        "rite_weights": rites_mix,
-                        "wheel_weights": cap_wheel,
-                    },
-                ),
-                Distribution(
-                    criteria="freegame",
-                    quota=trigger_quota,
-                    conditions={
-                        "reel_weights": {**base_reels, **free_reels},
-                        "force_wincap": False,
-                        "force_freegame": True,
-                        "scatter_triggers": {3: 100, 4: 20, 5: 5},
-                        "rite_weights": rites_mix,
-                    },
-                ),
-                Distribution(
-                    criteria="0",
-                    quota=0.4,
-                    win_criteria=0.0,
-                    conditions={"reel_weights": base_reels, "force_wincap": False, "force_freegame": False},
-                ),
-                Distribution(
-                    criteria="basegame",
-                    quota=0.5,
-                    conditions={"reel_weights": base_reels, "force_wincap": False, "force_freegame": False},
-                ),
+        def dist_set(trigger_quota, rites, nobonus=True, basegame=True):
+            d = [
+                Distribution(criteria="wincap", quota=0.001, win_criteria=cap,
+                             conditions={"reel_weights": cap_reels, "force_wincap": True, "force_freegame": True,
+                                         "scatter_triggers": triggers, "rite_weights": rites}),
+                Distribution(criteria="freegame", quota=trigger_quota,
+                             conditions={"reel_weights": {**base_reels, **free_reels}, "force_wincap": False,
+                                         "force_freegame": True, "scatter_triggers": triggers, "rite_weights": rites}),
             ]
+            if nobonus:
+                d.append(Distribution(criteria="0", quota=0.4, win_criteria=0.0,
+                                      conditions={"reel_weights": base_reels, "force_wincap": False, "force_freegame": False}))
+            if basegame:
+                d.append(Distribution(criteria="basegame", quota=0.5,
+                                      conditions={"reel_weights": base_reels, "force_wincap": False, "force_freegame": False}))
+            return d
 
-        def buy_distributions(rite):
-            return [
-                Distribution(
-                    criteria="wincap",
-                    quota=0.001,
-                    win_criteria=cap,
-                    conditions={
-                        "reel_weights": cap_reels,
-                        "force_wincap": True,
-                        "force_freegame": True,
-                        "scatter_triggers": {3: 100, 4: 20, 5: 5},
-                        "rite_weights": {rite: 1},
-                        "wheel_weights": cap_wheel,
-                    },
-                ),
-                Distribution(
-                    criteria="freegame",
-                    quota=1,
-                    conditions={
-                        "reel_weights": {**base_reels, **free_reels},
-                        "force_wincap": False,
-                        "force_freegame": True,
-                        "scatter_triggers": {3: 100, 4: 20, 5: 5},
-                        "rite_weights": {rite: 1},
-                    },
-                ),
-            ]
+        def mode(name, cost, dists, feature=False, buy=False):
+            return BetMode(name=name, cost=cost, rtp=self.rtp, max_win=cap, auto_close_disabled=False,
+                           is_feature=feature, is_buybonus=buy, distributions=dists)
 
+        buy = lambda rite: dist_set(1, {rite: 1}, nobonus=False, basegame=False)
+        mystery_rites = {"whiteout": 22, "glacier": 10, "absolute_zero": 4.8}  # published odds of the mystery buy
         self.bet_modes = [
-            BetMode(
-                name="base",
-                cost=1.0,
-                rtp=self.rtp,
-                max_win=cap,
-                auto_close_disabled=False,
-                is_feature=True,
-                is_buybonus=False,
-                distributions=natural_distributions(0.1),
-            ),
-            BetMode(
-                name="bonus_bet",
-                cost=1.25,
-                rtp=self.rtp,
-                max_win=cap,
-                auto_close_disabled=False,
-                is_feature=True,
-                is_buybonus=False,
-                distributions=natural_distributions(0.2),
-            ),
-            BetMode(
-                name="buy_blizzard",
-                cost=100.0,
-                rtp=self.rtp,
-                max_win=cap,
-                auto_close_disabled=False,
-                is_feature=False,
-                is_buybonus=True,
-                distributions=buy_distributions("blizzard"),
-            ),
-            BetMode(
-                name="buy_whiteout",
-                cost=150.0,
-                rtp=self.rtp,
-                max_win=cap,
-                auto_close_disabled=False,
-                is_feature=False,
-                is_buybonus=True,
-                distributions=buy_distributions("whiteout"),
-            ),
+            mode("base", 1.0, dist_set(0.1, natural_rites), feature=True),
+            mode("bonus_bet", 3.0, dist_set(0.3, natural_rites), feature=True),   # "plus": 3x cost bet boost
+            mode("buy_blizzard", 100.0, buy("blizzard"), buy=True),
+            mode("buy_whiteout", 300.0, buy("whiteout"), buy=True),
+            mode("buy_mystery", 500.0, dist_set(0.37, mystery_rites, nobonus=True, basegame=False), buy=True),
+            mode("buy_glacier", 1500.0, buy("glacier"), buy=True),
         ]

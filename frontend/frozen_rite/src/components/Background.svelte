@@ -4,13 +4,13 @@
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
-	import { ICE } from '../game/theme';
+	import { ICE, RITE_INFO } from '../game/theme';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 	const portrait = $derived(canvas.height > canvas.width);
 	const inFeature = $derived(context.stateGame.gameType === 'freegame');
-	const which = $derived(!inFeature ? 'base' : context.stateGame.rite);
+	const which = $derived(!inFeature ? 'base' : RITE_INFO[context.stateGame.rite].bg);
 
 	// native sizes of the generated paintings (cover-fit to the canvas)
 	const SIZES = {

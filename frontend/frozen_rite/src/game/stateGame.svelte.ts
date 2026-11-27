@@ -75,7 +75,7 @@ export type MultiplierSymbol = {
 export const stateGame = $state({
 	board,
 	gameType: 'basegame' as GameType,
-	rite: 'blizzard' as 'blizzard' | 'whiteout',
+	rite: 'blizzard' as 'blizzard' | 'whiteout' | 'glacier' | 'absolute_zero',
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
 	scatterCounter: 0,
 });

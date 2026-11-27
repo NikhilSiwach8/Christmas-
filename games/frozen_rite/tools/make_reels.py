@@ -54,7 +54,8 @@ BR = dict(H1=[3] * 5, H2=[4] * 5, H3=[4] * 5, H4=[5] * 5, H5=[5] * 5, L1=[7] * 5
 FR = dict(H1=[3] * 5, H2=[4] * 5, H3=[4] * 5, H4=[5] * 5, H5=[5] * 5, L1=[6] * 5, L2=[7] * 5, L3=[7] * 5)
 CAP = dict(H1=[8] * 5, H2=[7] * 5, H3=[6] * 5, H4=[5] * 5, H5=[4] * 5, L1=[3] * 5, L2=[3] * 5, L3=[3] * 5)
 
-write("BR0.csv", build(64, BR, [0, 3, 3, 3, 3], [1, 2, 2, 2, 1], 11))
-write("FR0.csv", build(60, FR, [0, 3, 3, 3, 3], [1, 1, 1, 1, 1], 12))
-write("FRWCAP.csv", build(60, CAP, [0, 8, 8, 8, 8], [1, 1, 1, 1, 1], 13))
+write("BR0.csv", build(64, BR, [0] * 5, [1, 2, 2, 2, 1], 11))
+write("FR0.csv", build(60, FR, [0] * 5, [2, 2, 2, 2, 2], 12))
+write("FRS.csv", build(60, FR, [0] * 5, [3, 3, 3, 3, 3], 14))   # Dark Surge: many more scatters
+write("FRWCAP.csv", build(60, CAP, [0] * 5, [1, 1, 1, 1, 1], 13))
 print("reels written")
