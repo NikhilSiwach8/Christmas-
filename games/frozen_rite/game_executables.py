@@ -138,7 +138,9 @@ class GameExecutables(GameCalculations):
 
     def spin_wheel(self):
         """One wheel spin at the current level; applies the outcome and emits the event."""
-        table = self.config.wheel_tables[self.wheel_level]
+        boosted = getattr(self, "wheel_boost", False)
+        table = self.config.wheel_boost_table if boosted else self.config.wheel_tables[self.wheel_level]
+        self.wheel_boost = False
         weights = {i: w for i, (_, _, w) in enumerate(table) if w > 0}
         idx = get_random_outcome(weights)
         kind, value, _ = table[idx]
@@ -151,17 +153,25 @@ class GameExecutables(GameCalculations):
             self.wheel_level = min(5, self.wheel_level + 1)
         elif kind == "dark_surge":
             self.surge = True
-        frost_wheel_event(self, level_before, kind, value, labels, result_index, self.wheel_level, self.global_multiplier)
+        frost_wheel_event(self, level_before, kind, value, labels, result_index, self.wheel_level, self.global_multiplier, boosted)
         if kind in ("mult", "frenzy"):
             update_global_mult_event(self)
         elif kind == "extra_sacrifice":
             self.do_sacrifice("wheel", True, extra_spins=self.config.sacrifice_extra_spins)
         elif kind == "chosen_offering":
             self.do_sacrifice("wheel", True, extra_spins=self.config.sacrifice_extra_spins)
-            self.upgrade_top_symbol()
+            # the offering's upgrade is random: either the wheel is upgraded (big multipliers) or the best symbol is promoted
+            if random.random() < 0.5:
+                self.upgrade_wheel()
+            else:
+                self.upgrade_top_symbol()
+
+    def upgrade_wheel(self):
+        """Chosen Offering: the wheel is upgraded - its next spin can only land big multipliers."""
+        self.wheel_boost = True
 
     def upgrade_top_symbol(self):
-        """Chosen Offering: the next-best remaining symbol is promoted into the best remaining one."""
+        """Symbol promotion: the next-best remaining symbol is converted into the best remaining one."""
         pool = self.remaining_symbols()
         if len(pool) >= 2:
             top, second = pool[0], pool[1]

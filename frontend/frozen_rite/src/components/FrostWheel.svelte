@@ -6,6 +6,7 @@
 		value: number;
 		newLevel: number;
 		multAfter: number;
+		boosted?: boolean;
 	};
 </script>
 
@@ -59,17 +60,17 @@
 	const describe = (e: EmitterEventFrostWheel) => {
 		switch (e.kind) {
 			case 'mult':
-				return { t: `MULTIPLIER +${e.value}`, s: `x${e.multAfter}` };
+				return { t: e.boosted ? `UPGRADED WHEEL +${e.value}` : `MULTIPLIER +${e.value}`, s: `x${e.multAfter}` };
 			case 'frenzy':
-				return { t: `RITUAL FRENZY +${e.value}`, s: `x${e.multAfter}` };
+				return { t: `FROST FRENZY +${e.value}`, s: `x${e.multAfter}` };
 			case 'extra_sacrifice':
 				return { t: 'EXTRA SACRIFICE', s: 'a symbol is converted' };
 			case 'chosen_offering':
-				return { t: 'CHOSEN OFFERING', s: 'sacrifice + the best symbol grows' };
+				return { t: 'CHOSEN OFFERING', s: 'sacrifice + a random upgrade' };
 			case 'dark_surge':
-				return { t: 'DARK SURGE', s: 'more scatters from now on' };
+				return { t: 'AURORA SURGE', s: 'more scatters from now on' };
 			case 'blood_moon':
-				return { t: 'BLOOD MOON', s: `wheel level ${e.newLevel}` };
+				return { t: 'FROST MOON', s: `wheel level ${e.newLevel}` };
 		}
 	};
 

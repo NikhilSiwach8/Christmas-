@@ -130,6 +130,7 @@ type BookEventFrostWheel = {
 	resultIndex: number;
 	newLevel: number;
 	multAfter: number;
+	boosted?: boolean;
 };
 
 // customised

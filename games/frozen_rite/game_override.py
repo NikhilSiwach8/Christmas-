@@ -10,6 +10,7 @@ class GameStateOverride(GameExecutables):
         self.sub_map = {}
         self.surge = False
         self.wheel_level = 1
+        self.wheel_boost = False
 
     def assign_special_sym_function(self):
         self.special_symbol_functions = {}

@@ -85,6 +85,8 @@ class GameConfig(Config):
                 ("blood_moon", 0, 6 if level < 5 else 0), ("frenzy", 20, 1 + 0.6 * k),
             ]
         self.wheel_tables = {lvl: table(lvl) for lvl in range(1, 6)}
+        # Chosen Offering upgrades the wheel: its next spin draws only from this big-multiplier table. TUNED.
+        self.wheel_boost_table = [("mult", 10, 50), ("mult", 25, 32), ("mult", 50, 14), ("frenzy", 100, 4)]
         # Aurora-style random multiplier on winning base spins (the listed "random multiplier"). TUNED.
         self.base_mult_weights = {1: 900, 2: 50, 3: 25, 5: 15, 10: 7, 25: 3}
 

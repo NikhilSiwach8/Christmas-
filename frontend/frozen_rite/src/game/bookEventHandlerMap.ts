@@ -180,6 +180,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			value: bookEvent.value,
 			newLevel: bookEvent.newLevel,
 			multAfter: bookEvent.multAfter,
+			boosted: bookEvent.boosted,
 		});
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {

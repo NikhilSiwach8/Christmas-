@@ -22,7 +22,7 @@ def symbol_sacrifice_event(gs, source, loser, winner, positions, persistent, ext
                        "persistent": bool(persistent), "extraSpins": int(extra_spins)})
 
 
-def frost_wheel_event(gs, level, kind, value, labels, result_index, new_level, mult_after):
+def frost_wheel_event(gs, level, kind, value, labels, result_index, new_level, mult_after, boosted=False):
     gs.book.add_event({"index": len(gs.book.events), "type": "frostWheel", "level": int(level), "kind": kind,
                        "value": int(value), "labels": labels, "resultIndex": int(result_index),
-                       "newLevel": int(new_level), "multAfter": int(mult_after)})
+                       "newLevel": int(new_level), "multAfter": int(mult_after), "boosted": bool(boosted)})
