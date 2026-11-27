@@ -94,7 +94,8 @@ class OptimizationSetup:
             # 63% of mystery buys end with no bonus (pay 0); the rest enter whiteout / glacier / absolute_zero
             d = natural(freegame_rtp=0.966, freegame_hr=2.7, base_rtp=0.0, base_hr=1.0)
             d["conditions"].pop("basegame", None)
-            d["scaling"] = scaling([("freegame", 0.9, (500, 1000)), ("freegame", 0.8, (5000, 10000))])
+            d["scaling"] = scaling([("freegame", 0.9, (500, 1000)), ("freegame", 0.8, (5000, 10000)),
+                                    ("freegame", 0.35, (10000, 20000)), ("freegame", 0.25, (20000, 40000))])  # keep P(>=10,000x) under the 1% Studio limit
             d.pop("distribution_bias", None)
             return d
 

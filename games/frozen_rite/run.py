@@ -33,6 +33,10 @@ if __name__ == "__main__":
         "run_format_checks": compression,
     }
     target_modes = ["base", "bonus_bet", "buy_blizzard", "buy_whiteout", "buy_mystery", "buy_glacier"]
+    only = [m for m in os.environ.get("FR_ONLY", "").split(",") if m]
+    if only:  # rerun just these modes (other modes keep their existing books)
+        num_sim_args = {m: n for m, n in num_sim_args.items() if m in only}
+        target_modes = [m for m in target_modes if m in only]
 
     config = GameConfig()
     gamestate = GameState(config)
