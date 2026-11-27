@@ -24,5 +24,5 @@ Coloured scatters (red/blue/purple), Symbol Removal (scatter pair converts one s
 four rites (Blizzard x2/LV1, Whiteout x5/LV2, Glacier x10/LV3 higher-wins, Absolute Zero x20/LV3 lows converted), in-bonus wheel (multipliers, extra sacrifice,
 Chosen Offering = random wheel upgrade or symbol promotion, Aurora Surge, Frost Moon, Frost Frenzy), no wilds, 40,000x cap.
 Modes: base, bonus_bet (3x), buy_blizzard (100x), buy_whiteout (300x), buy_mystery (500x), buy_glacier (1500x).
-Verified from lookup tables: RTP 96.70% in all six modes. SDK risk checks: 5 of 6 pass - buy_mystery fails "10,000x+ frequency" (1.38% vs 1% limit), so Studio would lower its bet limits.
+Verified from lookup tables: RTP 96.70% in all six modes. SDK risk checks: 6 of 6 pass after retuning buy_mystery (P(>=10,000x) 1.38% -> 0.24%). buy_glacier sits close to the limit at 0.98% (limit 1%).
 Numbers not in public sources (wheel odds, reel frequencies) are our own tuning.
